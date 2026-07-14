@@ -1,0 +1,55 @@
+LIFTX FULL NEW SITE — CLEAN DEPLOYMENT
+
+IMPORTANT DEPLOYMENT METHOD
+1. In the GitHub repository connected to the site you are replacing, delete the CURRENT website files.
+2. Keep the repository itself and its Cloudflare connection.
+3. Upload every file from this package into the repository root.
+4. Commit once and wait for Cloudflare to finish deploying.
+
+DO NOT upload this package over a mixed set of old files.
+
+HTML pages included: 14
+Internal links checked: 501
+Broken internal targets: 0
+Missing required pages: 0
+
+FILES THAT BELONG IN THE CLEAN REPOSITORY:
+- 404.html
+- amarr-garage-doors-boise.html
+- builders-contractors.html
+- clopay-garage-doors-boise.html
+- commercial.html
+- commercial.jpg
+- contact.html
+- favicon.png
+- fullview-project.jpg
+- garage-door-brands.html
+- garage-door-installation-boise.html
+- garage-door-repair-boise.html
+- hero-fullview.jpg
+- home-v4.css
+- home-v4.js
+- index.html
+- liftx-wordmark.png
+- operator.jpg
+- projects.html
+- residential.html
+- residential.jpg
+- robots.txt
+- script.js
+- sitemap.xml
+- specialty.jpg
+- spring-repair.jpg
+- styles.css
+- warranty.html
+- wayne-dalton-garage-doors-boise.html
+
+NOT INCLUDED ON PURPOSE:
+- _redirects
+- old cleanup notes
+- obsolete page files
+- duplicate social links inside the mobile menu
+
+KNOWN ITEMS STILL REQUIRING YOUR REAL DATA:
+- Exact direct Google review/profile URL
+- Web3Forms access key in contact.html before the form can submit
