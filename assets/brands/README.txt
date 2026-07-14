@@ -1,0 +1,1 @@
+LiftX manufacturer logos
