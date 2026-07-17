@@ -1,0 +1,154 @@
+[
+  {
+    "id": "pricing",
+    "icon": "$",
+    "title": "Pricing & Estimates",
+    "desc": "Labor, estimates, quotes, travel, and what may change the final price.",
+    "questions": [
+      [
+        "How does the first hour of labor work?",
+        "The first hour is charged in full when LIFTX arrives. Whether the visit takes 15 minutes or 55 minutes, the first hour is the same. Additional labor is not charged until the next hour begins."
+      ],
+      [
+        "Can LIFTX give me an estimate over the phone?",
+        "In many cases, LIFTX can provide minimum pricing or a realistic range. Some issues still require an on-site inspection before the exact repair and price can be confirmed."
+      ],
+      [
+        "Can I send photos or video?",
+        "Yes. Photos or a short video can help identify the likely issue, product, section label, or parts and can make scheduling more efficient."
+      ],
+      [
+        "Does LIFTX price match?",
+        "LIFTX will review legitimate written estimates when the product, scope, installation, and warranty are reasonably comparable."
+      ]
+    ]
+  },
+  {
+    "id": "repairs",
+    "icon": "\u2699",
+    "title": "Repairs & Service",
+    "desc": "Broken springs, off-track doors, cables, temporary repairs, and same-day service.",
+    "questions": [
+      [
+        "Can I use a door with a broken spring?",
+        "No. A broken spring removes part or all of the door\u2019s counterbalance. Operating the door can damage the operator, cables, sections, or hardware and can create a safety hazard."
+      ],
+      [
+        "Does LIFTX replace both springs?",
+        "On a two-spring system, LIFTX generally replaces the pair. Both springs have usually completed the same number of cycles, and replacing only one can leave an uneven or short-lived repair."
+      ],
+      [
+        "Can a damaged door be repaired temporarily?",
+        "Sometimes. When a safe temporary repair is possible, LIFTX can explain what it will and will not accomplish and what permanent work is still required."
+      ],
+      [
+        "Is same-day service available?",
+        "Often, depending on location, workload, parts, and the type of failure. LIFTX will give the most realistic arrival window available."
+      ]
+    ]
+  },
+  {
+    "id": "doors",
+    "icon": "\u25a4",
+    "title": "New Doors & Design",
+    "desc": "Door selection, insulation, windows, colors, measurements, and ordering.",
+    "questions": [
+      [
+        "How do I choose a new garage door?",
+        "Start with the opening, use, insulation needs, budget, exterior style, and desired maintenance. LIFTX then narrows the product and construction options that fit the application."
+      ],
+      [
+        "Can I design the door online first?",
+        "Yes. The Brands page links to official manufacturer design tools for Amarr, Clopay, Wayne Dalton, Garaga, and Haas Door."
+      ],
+      [
+        "Does the online rendering guarantee the exact appearance?",
+        "No. Screen colors, glass transparency, panel proportions, and available options may vary. LIFTX confirms the final specification before ordering."
+      ],
+      [
+        "How long do new doors take?",
+        "Lead time depends on the manufacturer, model, size, options, finish, and current production schedule. Timing is confirmed as closely as possible before the order is placed."
+      ]
+    ]
+  },
+  {
+    "id": "openers",
+    "icon": "\u2301",
+    "title": "Openers & Operators",
+    "desc": "Residential openers, wall-mount systems, controls, and commercial operators.",
+    "questions": [
+      [
+        "Should I replace the opener when I replace the door?",
+        "Not automatically. LIFTX checks whether the existing opener is compatible, correctly sized, safe, and in reasonable condition."
+      ],
+      [
+        "Can LIFTX install a wall-mount opener?",
+        "Yes, when the door, shaft, track configuration, side room, power, and structure are compatible."
+      ],
+      [
+        "Why does the door work manually but not with the opener?",
+        "The issue may involve controls, photo eyes, travel limits, force settings, wiring, the trolley, or the operator itself. The complete system should be tested before concluding the opener needs replacement."
+      ]
+    ]
+  },
+  {
+    "id": "warranty",
+    "icon": "\u25c7",
+    "title": "Warranty & Maintenance",
+    "desc": "Craftsmanship coverage, manufacturer warranties, and maintenance visits.",
+    "questions": [
+      [
+        "What is the LIFTX workmanship warranty?",
+        "LIFTX provides a one-year craftsmanship and installation warranty unless different written terms are provided for the project."
+      ],
+      [
+        "What does the manufacturer cover?",
+        "Manufacturer warranties apply separately to eligible doors, operators, springs, electronics, windows, and other components. Coverage varies by product."
+      ],
+      [
+        "What can void workmanship coverage?",
+        "Third-party service or adjustment, structural movement, impact, abuse, weather-related damage, and conditions outside LIFTX workmanship may affect coverage."
+      ]
+    ]
+  },
+  {
+    "id": "commercial",
+    "icon": "\u25a6",
+    "title": "Commercial & Builders",
+    "desc": "Commercial doors, operators, project coordination, plans, and larger installations.",
+    "questions": [
+      [
+        "Does LIFTX work on commercial doors?",
+        "Yes. LIFTX services and installs commercial sectional doors, operators, rolling and specialty systems, and related controls and hardware."
+      ],
+      [
+        "Can LIFTX quote from plans?",
+        "Yes. Plans, schedules, elevations, specifications, and opening information help develop an initial scope. Field verification may still be required before ordering."
+      ],
+      [
+        "Can LIFTX coordinate multi-door projects?",
+        "Yes. LIFTX can coordinate product selection, openings, lead times, delivery, installation sequencing, operators, controls, and closeout requirements."
+      ]
+    ]
+  },
+  {
+    "id": "trust",
+    "icon": "\u2713",
+    "title": "Recommendations & Trust",
+    "desc": "How LIFTX decides what to recommend and when repair or replacement makes sense.",
+    "questions": [
+      [
+        "Does LIFTX upsell?",
+        "No. LIFTX explains the condition, options, cost, and consequences, then lets the customer decide without pressure."
+      ],
+      [
+        "Will LIFTX say when a repair is not worth it?",
+        "Yes. If repair makes sense, LIFTX will recommend it. If replacement offers better long-term value, the reason will be explained."
+      ],
+      [
+        "Will LIFTX recommend replacement just because the door is old?",
+        "No. Age alone is not a reason to replace a door. Function, structural condition, safety, repair value, and the customer\u2019s goals matter."
+      ]
+    ]
+  }
+]

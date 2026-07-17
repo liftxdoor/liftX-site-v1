@@ -1,0 +1,18 @@
+UPLOAD ALL FILES IN THIS FOLDER TO THE ROOT OF website-v2.
+
+Replace:
+- index.html
+- styles.css
+- script.js
+- garage-door-brands.html
+- common-questions.html
+- sitemap.xml
+
+Add:
+- brands.css
+- faq.css
+- faq.js
+- faq-data.json
+
+Do not upload the containing folder itself.
+Do not merge to main until the Cloudflare preview is checked.
