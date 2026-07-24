@@ -1,0 +1,15 @@
+LIFTX MOCKUP — NAVIGATION AND LOGO FIX
+
+Upload every file in this folder to the ROOT of:
+full-site-cleanup-mockup
+
+This replacement:
+- changes all navigation links to the actual .html page files
+- changes the logo to the existing root liftx-wordmark.png
+- changes the favicon and project photos to existing root files
+- removes the mockup's dependency on the missing /assets folder
+- keeps _redirects only as optional extensionless routing support
+
+Do not upload the containing folder.
+Commit message: Fix navigation, logo, and image paths
+Do not merge into main.

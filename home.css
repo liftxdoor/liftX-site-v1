@@ -1,5 +1,5 @@
 
-.home-hero{min-height:690px;position:relative;color:#fff;background:url("/assets/hero-fullview.webp") center/cover no-repeat;overflow:hidden}
+.home-hero{min-height:690px;position:relative;color:#fff;background:url("hero-fullview.jpg") center/cover no-repeat;overflow:hidden}
 .home-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.96) 0%,rgba(0,0,0,.88) 29%,rgba(0,0,0,.46) 55%,rgba(0,0,0,.10) 80%,rgba(0,0,0,.03) 100%)}
 .home-hero-inner{position:relative;z-index:1;width:min(var(--max),calc(100% - (var(--gutter)*2)));margin:auto}
 .home-hero-copy{max-width:720px;padding:88px 0 72px}
