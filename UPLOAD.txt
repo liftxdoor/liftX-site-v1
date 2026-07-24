@@ -1,0 +1,3 @@
+Upload site.css and site.js to the root of full-site-cleanup-mockup.
+Both files should replace the existing files.
+Commit message: Add mobile social icons
