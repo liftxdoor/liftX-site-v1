@@ -1,3 +1,1 @@
-Upload site.css and site.js to the root of full-site-cleanup-mockup.
-Both files should replace the existing files.
-Commit message: Add mobile social icons
+Upload garage-door-brands.html and brands.css to the repository root on full-site-cleanup-mockup. Replace both existing files. Commit message: Add manufacturer logos to brands page
