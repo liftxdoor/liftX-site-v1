@@ -1,1 +1,8 @@
-Upload garage-door-brands.html and brands.css to the repository root on full-site-cleanup-mockup. Replace both existing files. Commit message: Add manufacturer logos to brands page
+Branch: full-site-cleanup-mockup
+
+Upload both files to the repository root:
+- site.js (replace existing)
+- brand-navigation.css (new)
+
+Commit message:
+Add logos to brand dropdown and pages

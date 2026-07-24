@@ -1,6 +1,81 @@
 const toggle=document.querySelector('.menu-toggle');
 const menu=document.querySelector('.mobile-menu');
 
+if(!document.querySelector('link[href="brand-navigation.css"]')){
+  const brandStyles=document.createElement('link');
+  brandStyles.rel='stylesheet';
+  brandStyles.href='brand-navigation.css';
+  document.head.appendChild(brandStyles);
+}
+
+const brandEntries=[
+  {
+    slug:'amarr-garage-doors-boise',
+    name:'Amarr',
+    logo:'assets/brands/amarr-logo.svg'
+  },
+  {
+    slug:'clopay-garage-doors-boise',
+    name:'Clopay',
+    logo:'assets/brands/Clopay-GoldBar_RGB.png'
+  },
+  {
+    slug:'wayne-dalton-garage-doors-boise',
+    name:'Wayne Dalton'
+  }
+];
+
+document.querySelectorAll('.nav-dropmenu a').forEach(link=>{
+  const href=(link.getAttribute('href')||'').toLowerCase();
+  const brand=brandEntries.find(item=>href.includes(item.slug));
+  if(!brand||link.classList.contains('nav-brand-entry')) return;
+
+  link.classList.add('nav-brand-entry');
+  link.textContent='';
+
+  const mark=document.createElement('span');
+  mark.className='nav-brand-mark';
+
+  if(brand.logo){
+    const image=document.createElement('img');
+    image.src=brand.logo;
+    image.alt='';
+    image.setAttribute('aria-hidden','true');
+    mark.appendChild(image);
+  }else{
+    mark.classList.add('nav-brand-mark-text');
+    mark.textContent=brand.name;
+  }
+
+  const name=document.createElement('span');
+  name.className='nav-brand-name';
+  name.textContent=brand.name;
+
+  link.append(mark,name);
+});
+
+const currentPath=window.location.pathname.toLowerCase();
+const currentBrand=brandEntries.find(item=>currentPath.includes(item.slug));
+const heroCopy=document.querySelector('.page-hero-copy');
+
+if(currentBrand&&heroCopy&&!heroCopy.querySelector('.manufacturer-hero-brand')){
+  const heroBrand=document.createElement('div');
+  heroBrand.className='manufacturer-hero-brand';
+
+  if(currentBrand.logo){
+    const image=document.createElement('img');
+    image.src=currentBrand.logo;
+    image.alt=`${currentBrand.name} logo`;
+    heroBrand.appendChild(image);
+  }else{
+    heroBrand.classList.add('manufacturer-hero-brand-text');
+    heroBrand.textContent=currentBrand.name;
+    heroBrand.setAttribute('aria-label',currentBrand.name);
+  }
+
+  heroCopy.insertBefore(heroBrand,heroCopy.firstChild);
+}
+
 if(menu&&!menu.querySelector('.mobile-socials')){
   const socialRow=document.createElement('div');
   socialRow.className='mobile-socials';
