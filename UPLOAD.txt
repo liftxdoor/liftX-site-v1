@@ -1,8 +1,2 @@
-Branch: full-site-cleanup-mockup
-
-Upload both files to the repository root:
-- site.js (replace existing)
-- brand-navigation.css (new)
-
-Commit message:
-Add logos to brand dropdown and pages
+Upload site.js to the repository root on full-site-cleanup-mockup and replace the existing file.
+Commit message: Remove duplicate Wayne Dalton dropdown text

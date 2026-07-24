@@ -33,25 +33,23 @@ document.querySelectorAll('.nav-dropmenu a').forEach(link=>{
   link.classList.add('nav-brand-entry');
   link.textContent='';
 
-  const mark=document.createElement('span');
-  mark.className='nav-brand-mark';
-
   if(brand.logo){
+    const mark=document.createElement('span');
+    mark.className='nav-brand-mark';
+
     const image=document.createElement('img');
     image.src=brand.logo;
     image.alt='';
     image.setAttribute('aria-hidden','true');
     mark.appendChild(image);
-  }else{
-    mark.classList.add('nav-brand-mark-text');
-    mark.textContent=brand.name;
+    link.appendChild(mark);
   }
 
   const name=document.createElement('span');
   name.className='nav-brand-name';
   name.textContent=brand.name;
 
-  link.append(mark,name);
+  link.appendChild(name);
 });
 
 const currentPath=window.location.pathname.toLowerCase();
