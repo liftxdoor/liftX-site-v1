@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Amarr Garage Doors Boise | LIFTX</title>
-<meta name="description" content="Amarr garage door selection, design tools, product guidance, and installation through LIFTX in Boise and the Treasure Valley.">
-<link rel="canonical" href="https://www.liftxdoor.com/amarr-garage-doors-boise">
+<title>Garage Door FAQ Boise & Treasure Valley | LIFTX</title>
+<meta name="description" content="Straightforward answers about garage door repair, springs, Full-View doors, openers, pricing, warranties, commercial work, and scheduling from LIFTX.">
+<link rel="canonical" href="https://www.liftxdoor.com/common-questions">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta property="og:title" content="Amarr Garage Doors Boise | LIFTX">
-<meta property="og:description" content="Amarr garage door selection, design tools, product guidance, and installation through LIFTX in Boise and the Treasure Valley.">
+<meta property="og:title" content="Garage Door FAQ Boise & Treasure Valley | LIFTX">
+<meta property="og:description" content="Straightforward answers about garage door repair, springs, Full-View doors, openers, pricing, warranties, commercial work, and scheduling from LIFTX.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.liftxdoor.com/amarr-garage-doors-boise">
+<meta property="og:url" content="https://www.liftxdoor.com/common-questions">
 <meta property="og:image" content="https://www.liftxdoor.com/assets/hero-fullview.webp">
 <link rel="icon" href="/assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/site.css">
-
+<link rel="stylesheet" href="/faq.css">
 
 </head><body>
 <header class="site-header">
@@ -28,7 +28,7 @@
     <nav class="desktop-nav" aria-label="Primary navigation">
       <a href="/residential">Residential</a><a href="/commercial">Commercial</a><a href="/garage-door-repair-boise">Repair</a><a href="/garage-door-installation-boise">New Doors</a><a href="/projects">Projects</a>
       <div class="nav-dropdown">
-        <button class="nav-dropbtn active" type="button" aria-haspopup="true" aria-expanded="false">
+        <button class="nav-dropbtn" type="button" aria-haspopup="true" aria-expanded="false">
           Brands
           <svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5"></path></svg>
         </button>
@@ -41,7 +41,7 @@
           <a href="/amarr-garage-doors-boise">Amarr</a><a href="/clopay-garage-doors-boise">Clopay</a><a href="/wayne-dalton-garage-doors-boise">Wayne Dalton</a>
         </div>
       </div>
-      <a href="/common-questions">FAQ</a>
+      <a class="active" href="/common-questions">FAQ</a>
     </nav>
     <div class="nav-actions">
       <a class="social-link" href="https://www.instagram.com/liftxdoor/" target="_blank" rel="noopener" aria-label="LIFTX on Instagram">
@@ -60,24 +60,25 @@
 <section class="page-hero">
   <div class="content-shell page-hero-inner">
     <div class="page-hero-copy">
-      <p class="eyebrow">Amarr Garage Doors</p>
-      <h1>Explore Amarr with LIFTX.</h1>
-      <p>Amarr offers residential and commercial doors across traditional, carriage, modern, insulated, and Full-View applications. Use the official design tool to narrow the look, then let LIFTX verify the product and installation details.</p>
-      <div class="page-actions"><a class="btn btn-primary" href="https://www.amarr.com/us/en/design-your-garage-door">Design a Amarr Door</a><a class="btn btn-outline" href="/contact">Request a Quote</a></div>
+      <p class="eyebrow">Straight Answers. No Pressure.</p>
+      <h1>Common Questions</h1>
+      <p>Search clear answers about repairs, new doors, Full-View systems, operators, pricing, warranties, commercial work, and recommendations.</p>
+      <div class="page-actions"><a class="btn btn-primary" href="sms:+12089954321">Ask LIFTX</a></div>
     </div>
   </div>
 </section>
 
-<section class="section"><div class="content-shell"><div class="section-head"><p class="eyebrow">Product Guidance</p><h2>Choose the appearance and construction together.</h2><p>LIFTX helps compare style, insulation, materials, windows, glass, finish, track, hardware, operators, warranty, lead time, and installation requirements. The right product depends on more than the panel design.</p></div><div class="cards">
-<article class="card"><h3>Design & Appearance</h3><p>Panel design, color, windows, glass, overlays, hardware, and architectural fit.</p></article>
-<article class="card"><h3>Construction & Performance</h3><p>Materials, insulation, section thickness, hardware, expected use, and environment.</p></article>
-<article class="card"><h3>Installation & Operation</h3><p>Opening verification, track, headroom, lift, operators, controls, structure, and final adjustment.</p></article>
-</div></div></section>
+<section class="section faq-main"><div class="content-shell">
+<div class="faq-search"><label for="faq-search">Search common questions</label><div class="search-box"><input id="faq-search" type="search" placeholder="Try “spring,” “Full-View,” or “warranty”" autocomplete="off"><button id="clear-search" type="button" hidden>Clear</button></div></div>
+<div id="category-home"><div class="section-head"><p class="eyebrow">Choose a Category</p><h2>Start with what you need.</h2><p>Each category keeps the page focused and easy to scan.</p></div><div class="category-grid" id="category-grid"></div></div>
+<div id="category-view" hidden><button class="back-button" id="back-button" type="button">← All categories</button><div class="faq-head"><div><p class="eyebrow">Common Questions</p><h2 id="category-title"></h2><p id="category-description"></p></div><a class="btn btn-primary" href="sms:+12089954321">Ask LIFTX</a></div><div class="accordion" id="accordion-list"></div></div>
+<div id="search-results" hidden><div class="faq-head"><div><p class="eyebrow">Search Results</p><h2>Matching questions</h2><p id="result-count"></p></div></div><div class="accordion" id="result-list"></div></div>
+</div></section>
 
 <section class="final-cta">
   <div class="content-shell final-cta-inner">
-    <div><p class="eyebrow">Interested in Amarr?</p><h2>Send the design or product reference.</h2><p>LIFTX will confirm the available model, options, measurements, and installation requirements.</p></div>
-    <a class="btn btn-primary" href="/contact">Contact LIFTX</a>
+    <div><p class="eyebrow">Still Unsure?</p><h2>Send us what you’re seeing.</h2><p>Photos or a short video can help narrow down the issue and prepare the right parts.</p></div>
+    <a class="btn btn-primary" href="sms:+12089954321">Text Photos</a>
   </div>
 </section>
 
@@ -95,4 +96,4 @@
   <div class="content-shell footer-bottom"><span>Idaho GC License #1971051</span><span>Built in-house by LIFTX.</span></div>
 </footer>
 <div class="mobile-sticky"><a href="tel:+12089954321">Call</a><a href="sms:+12089954321">Text</a></div>
-<script src="/site.js"></script></body></html>
+<script src="/site.js"></script><script src="/faq.js"></script></body></html>
