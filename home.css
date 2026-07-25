@@ -1,5 +1,5 @@
 
-.home-hero{min-height:690px;position:relative;color:#fff;background:url("hero-fullview.jpg") center/cover no-repeat;overflow:hidden}
+.home-hero{min-height:690px;position:relative;color:#fff;background:url("/assets/projects/full-view-commercial-door-exterior-05.webp") 58% center/cover no-repeat;overflow:hidden}
 .home-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.96) 0%,rgba(0,0,0,.88) 29%,rgba(0,0,0,.46) 55%,rgba(0,0,0,.10) 80%,rgba(0,0,0,.03) 100%)}
 .home-hero-inner{position:relative;z-index:1;width:min(var(--max),calc(100% - (var(--gutter)*2)));margin:auto}
 .home-hero-copy{max-width:720px;padding:88px 0 72px}
@@ -15,4 +15,4 @@
 .route-list{margin-top:44px;border-top:1px solid #ccd2d9}
 .route-link{min-height:132px;display:grid;grid-template-columns:50px minmax(0,1fr) 26px;gap:22px;align-items:center;border-bottom:1px solid #ccd2d9;transition:.18s}
 .route-link:hover{padding-left:12px;background:#fff}.route-link>span{color:var(--blue);font-weight:900;font-size:.78rem}.route-link h3{margin:0 0 7px}.route-link p{margin:0;color:var(--gray);font-size:.92rem}.route-link b{font-size:1.3rem;color:var(--blue)}.route-featured{background:#fff}.route-kicker{margin:0 0 4px!important;color:var(--blue)!important;font-size:.68rem!important;font-weight:900;text-transform:uppercase;letter-spacing:.11em}
-@media(max-width:760px){.home-hero{min-height:730px;background-position:61% center}.home-hero-copy{padding:82px 0 64px}.hero-actions{display:block}.hero-actions .btn{width:100%}.hero-actions .btn-outline{display:none}.trust-row{grid-template-columns:1fr 1fr;gap:19px 13px;margin-top:40px}.quick-grid{grid-template-columns:1fr}.quick-card{border-right:0;border-bottom:1px solid var(--line);min-height:auto;padding:28px 0}.route-link{grid-template-columns:36px minmax(0,1fr) 18px;gap:13px;min-height:150px}.route-link:hover{padding-left:0;background:transparent}}
+@media(max-width:760px){.home-hero{min-height:730px;background-position:58% center}.home-hero-copy{padding:82px 0 64px}.hero-actions{display:block}.hero-actions .btn{width:100%}.hero-actions .btn-outline{display:none}.trust-row{grid-template-columns:1fr 1fr;gap:19px 13px;margin-top:40px}.quick-grid{grid-template-columns:1fr}.quick-card{border-right:0;border-bottom:1px solid var(--line);min-height:auto;padding:28px 0}.route-link{grid-template-columns:36px minmax(0,1fr) 18px;gap:13px;min-height:150px}.route-link:hover{padding-left:0;background:transparent}}
