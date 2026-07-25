@@ -233,3 +233,6 @@ textarea{min-height:150px;resize:vertical}
 .nav-dropdown.open .nav-dropbtn svg{transform:rotate(180deg)}
 a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #5FA3EE;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+/* Prevent the Brands dropdown intro copy from inheriting desktop navigation nowrap. */
+.nav-dropmenu{white-space:normal}
+.dropdown-featured strong,.dropdown-featured span{white-space:normal;overflow-wrap:anywhere}
