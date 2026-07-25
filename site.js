@@ -1,13 +1,6 @@
 const toggle=document.querySelector('.menu-toggle');
 const menu=document.querySelector('.mobile-menu');
 
-if(!document.querySelector('link[href="brand-navigation.css"]')){
-  const brandStyles=document.createElement('link');
-  brandStyles.rel='stylesheet';
-  brandStyles.href='brand-navigation.css';
-  document.head.appendChild(brandStyles);
-}
-
 const brandEntries=[
   {
     slug:'amarr-garage-doors-boise',
@@ -25,6 +18,7 @@ const brandEntries=[
   }
 ];
 
+/* Add available logos to the desktop Brands dropdown. */
 document.querySelectorAll('.nav-dropmenu a').forEach(link=>{
   const href=(link.getAttribute('href')||'').toLowerCase();
   const brand=brandEntries.find(item=>href.includes(item.slug));
@@ -48,32 +42,80 @@ document.querySelectorAll('.nav-dropmenu a').forEach(link=>{
   const name=document.createElement('span');
   name.className='nav-brand-name';
   name.textContent=brand.name;
-
   link.appendChild(name);
 });
 
+/* Display only real manufacturer logos on individual brand pages. */
 const currentPath=window.location.pathname.toLowerCase();
 const currentBrand=brandEntries.find(item=>currentPath.includes(item.slug));
 const heroCopy=document.querySelector('.page-hero-copy');
 
-if(currentBrand&&heroCopy&&!heroCopy.querySelector('.manufacturer-hero-brand')){
+if(currentBrand?.logo&&heroCopy&&!heroCopy.querySelector('.manufacturer-hero-brand')){
   const heroBrand=document.createElement('div');
   heroBrand.className='manufacturer-hero-brand';
 
-  if(currentBrand.logo){
-    const image=document.createElement('img');
-    image.src=currentBrand.logo;
-    image.alt=`${currentBrand.name} logo`;
-    heroBrand.appendChild(image);
-  }else{
-    heroBrand.classList.add('manufacturer-hero-brand-text');
-    heroBrand.textContent=currentBrand.name;
-    heroBrand.setAttribute('aria-label',currentBrand.name);
-  }
-
+  const image=document.createElement('img');
+  image.src=currentBrand.logo;
+  image.alt=`${currentBrand.name} logo`;
+  heroBrand.appendChild(image);
   heroCopy.insertBefore(heroBrand,heroCopy.firstChild);
 }
 
+/* Correct manufacturer CTA wording and external-link behavior. */
+document.querySelectorAll('a').forEach(link=>{
+  if(link.textContent.trim()==='Design a Amarr Door'){
+    link.textContent='Design an Amarr Door';
+  }
+
+  const href=link.getAttribute('href')||'';
+  const isManufacturerTool=/^https:\/\/(www\.)?(amarr\.com|clopaydoor\.com|wayne-dalton\.com|designcentre\.garaga\.com|haasdoor\.com|liftmaster\.com)\//i.test(href);
+  if(isManufacturerTool){
+    link.target='_blank';
+    link.rel='noopener';
+  }
+});
+
+/* Accessible desktop dropdown behavior. */
+document.querySelectorAll('.nav-dropdown').forEach(dropdown=>{
+  const button=dropdown.querySelector('.nav-dropbtn');
+  const panel=dropdown.querySelector('.nav-dropmenu');
+  if(!button||!panel) return;
+
+  const setDropdown=(open,{focusButton=false}={})=>{
+    dropdown.classList.toggle('open',open);
+    button.setAttribute('aria-expanded',String(open));
+    if(focusButton) button.focus();
+  };
+
+  button.addEventListener('click',event=>{
+    event.preventDefault();
+    setDropdown(!dropdown.classList.contains('open'));
+  });
+
+  dropdown.addEventListener('mouseenter',()=>button.setAttribute('aria-expanded','true'));
+  dropdown.addEventListener('mouseleave',()=>{
+    if(!dropdown.classList.contains('open')) button.setAttribute('aria-expanded','false');
+  });
+
+  dropdown.addEventListener('focusin',()=>button.setAttribute('aria-expanded','true'));
+  dropdown.addEventListener('focusout',event=>{
+    if(!dropdown.contains(event.relatedTarget)&&!dropdown.classList.contains('open')){
+      button.setAttribute('aria-expanded','false');
+    }
+  });
+
+  dropdown.addEventListener('keydown',event=>{
+    if(event.key==='Escape'){
+      setDropdown(false,{focusButton:true});
+    }
+  });
+
+  document.addEventListener('click',event=>{
+    if(!dropdown.contains(event.target)) setDropdown(false);
+  });
+});
+
+/* Add social links to the mobile menu. */
 if(menu&&!menu.querySelector('.mobile-socials')){
   const socialRow=document.createElement('div');
   socialRow.className='mobile-socials';
@@ -96,18 +138,24 @@ if(menu&&!menu.querySelector('.mobile-socials')){
   menu.appendChild(socialRow);
 }
 
+/* Accessible mobile menu behavior. */
 if(toggle&&menu){
-  toggle.addEventListener('click',()=>{
-    const open=menu.classList.toggle('open');
+  const setMenu=(open,{returnFocus=false}={})=>{
+    menu.classList.toggle('open',open);
     document.body.classList.toggle('menu-open',open);
     toggle.setAttribute('aria-expanded',String(open));
     menu.setAttribute('aria-hidden',String(!open));
-  });
+    toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+    if(returnFocus) toggle.focus();
+  };
 
-  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
-    menu.classList.remove('open');
-    document.body.classList.remove('menu-open');
-    toggle.setAttribute('aria-expanded','false');
-    menu.setAttribute('aria-hidden','true');
-  }));
+  toggle.addEventListener('click',()=>setMenu(!menu.classList.contains('open')));
+
+  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenu(false)));
+
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape'&&menu.classList.contains('open')){
+      setMenu(false,{returnFocus:true});
+    }
+  });
 }
