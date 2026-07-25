@@ -1,2 +1,14 @@
-Upload site.js to the repository root on full-site-cleanup-mockup and replace the existing file.
-Commit message: Remove duplicate Wayne Dalton dropdown text
+Branch: full-site-cleanup-mockup
+
+Upload both files to the repository root:
+- contact.html (replace existing)
+- contact.js (replace existing)
+
+Commit message:
+Connect production Formspree contact form
+
+After Cloudflare deploys:
+1. Open the branch Contact page.
+2. Submit one test using your own information.
+3. Confirm the success message appears.
+4. Confirm the submission appears in Formspree and reaches josh@liftxdoor.com.

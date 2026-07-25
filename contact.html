@@ -11,14 +11,20 @@
 <meta property="og:description" content="Contact LIFTX for residential, commercial, repair, builder, new door, Full-View, operator, and specialty overhead door projects across Boise and Idaho.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.liftxdoor.com/contact">
-<meta property="og:image" content="https://www.liftxdoor.comhero-fullview.jpg">
+<meta property="og:image" content="https://www.liftxdoor.com/hero-fullview.jpg">
 <link rel="icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
-
-
+<style>
+.form-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.form-status{display:none;margin:0;padding:14px 16px;border-radius:9px;font-size:.93rem;font-weight:750;line-height:1.5}
+.form-status.is-visible{display:block}
+.form-status.is-success{color:#173f2a;background:#eef8f2;border:1px solid #badbc7}
+.form-status.is-error{color:#5b2020;background:#fff2f2;border:1px solid #e4bcbc}
+.form-submit[disabled]{cursor:wait;opacity:.72}
+</style>
 </head><body>
 <header class="site-header">
   <div class="nav-shell">
@@ -70,17 +76,29 @@
 
 <section class="section light"><div class="content-shell contact-grid">
 <div><p class="eyebrow">Direct Contact</p><h2>Call, text, or email.</h2><div class="contact-card"><h3>Phone</h3><p><a href="tel:+12089954321">208-995-4321</a></p><h3>Text</h3><p><a href="sms:+12089954321">Text photos, video, or project details</a></p><h3>Email</h3><p><a href="mailto:josh@liftxdoor.com">josh@liftxdoor.com</a></p><h3>Service Area</h3><p>Boise, the Treasure Valley, Valley County, and surrounding areas.</p></div></div>
-<div class="contact-card"><form id="contact-form"><div class="form-grid">
-<div class="field"><label for="name">Name</label><input id="name" type="text" name="name" required></div>
-<div class="field"><label for="phone">Phone</label><input id="phone" type="tel" name="phone" required></div>
-<div class="field"><label for="email">Email</label><input id="email" type="email" name="email"></div>
-<div class="field"><label for="city">City</label><input id="city" type="text" name="city"></div>
+
+<div class="contact-card">
+<form id="contact-form" action="https://formspree.io/f/mgogpvwg" method="POST">
+<input type="hidden" name="subject" value="New LIFTX Website Inquiry — {{ service }} — {{ name }}">
+<div class="form-honeypot" aria-hidden="true">
+<label for="company-website">Leave this field empty</label>
+<input id="company-website" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+</div>
+
+<div class="form-grid">
+<div class="field"><label for="name">Name</label><input id="name" type="text" name="name" autocomplete="name" required></div>
+<div class="field"><label for="phone">Phone</label><input id="phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" required></div>
+<div class="field"><label for="email">Email</label><input id="email" type="email" name="email" autocomplete="email" inputmode="email"></div>
+<div class="field"><label for="city">City</label><input id="city" type="text" name="city" autocomplete="address-level2"></div>
 <div class="field"><label for="customer-type">Customer type</label><select id="customer-type" name="customer_type"><option>Homeowner</option><option>Business / Commercial</option><option>Builder / Contractor</option><option>Property Manager</option></select></div>
 <div class="field"><label for="service">Service needed</label><select id="service" name="service"><option>Repair</option><option>New Door / Replacement</option><option>Full-View Door</option><option>Commercial Door</option><option>Builder / New Construction</option><option>Operator / Opener</option><option>Maintenance</option><option>Other</option></select></div>
 <div class="field full"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
-<div class="field full"><div class="note">This mockup opens your email app with the form details. Before production, connect the verified existing form endpoint.</div></div>
-<div class="field full"><button class="btn btn-primary" type="submit">Create Email Request</button></div>
-</div></form></div>
+<div class="field full"><div class="note">For photos, video, plans, or bid documents, submit the form first and then reply to the confirmation—or text them directly to LIFTX.</div></div>
+<div class="field full"><div id="form-status" class="form-status" role="status" aria-live="polite"></div></div>
+<div class="field full"><button id="form-submit" class="btn btn-primary form-submit" type="submit">Send Request</button></div>
+</div>
+</form>
+</div>
 </div></section>
 </main>
 <footer class="site-footer">
