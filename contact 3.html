@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Contact LIFTX | Garage Door Service Boise</title>
+<meta content="Contact LIFTX for garage door repair, new doors, commercial service, Full-View systems, builders, operators, and specialty door work." name="description"/>
+<meta content="Contact LIFTX" property="og:image:alt"/><meta content="LIFTX" property="og:site_name"/><meta content="en_US" property="og:locale"/><meta content="summary_large_image" name="twitter:card"/><meta content="Contact LIFTX | Garage Door Service Boise" name="twitter:title"/><meta content="Contact LIFTX for garage door repair, new doors, commercial service, Full-View systems, builders, operators, and specialty door work." name="twitter:description"/><meta content="https://www.liftxdoor.com/assets/projects/full-view-commercial-door-exterior-01.webp" name="twitter:image"/><meta content="#111111" name="theme-color"/><link href="https://www.liftxdoor.com/contact" rel="canonical"/>
+<meta content="index,follow,max-image-preview:large" name="robots"/>
+<meta content="Contact LIFTX | Garage Door Service Boise" property="og:title"/>
+<meta content="Contact LIFTX for garage door repair, new doors, commercial service, Full-View systems, builders, operators, and specialty door work." property="og:description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://www.liftxdoor.com/contact" property="og:url"/>
+<meta content="https://www.liftxdoor.com/assets/projects/full-view-commercial-door-exterior-01.webp" property="og:image"/>
+<link href="/favicon.png" rel="icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="site.css" rel="stylesheet"/>
+<style>
+.form-honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.form-status{display:none;margin:0;padding:14px 16px;border-radius:9px;font-size:.93rem;font-weight:750;line-height:1.5}
+.form-status.is-visible{display:block}
+.form-status.is-success{color:#173f2a;background:#eef8f2;border:1px solid #badbc7}
+.form-status.is-error{color:#5b2020;background:#fff2f2;border:1px solid #e4bcbc}
+.form-submit[disabled]{cursor:wait;opacity:.72}
+
+.contact-page{background:var(--light)}
+.contact-hero{padding:72px 0 88px;background:#0b0d10}
+.contact-layout{
+  display:grid;
+  grid-template-columns:minmax(0,.82fr) minmax(520px,1.18fr);
+  grid-template-areas:
+    "intro form"
+    "details form";
+  gap:32px 56px;
+  align-items:start;
+}
+.contact-intro{grid-area:intro;color:#fff;padding-top:18px}
+.contact-intro h1{max-width:620px;margin-bottom:20px}
+.contact-intro-copy{
+  max-width:610px;
+  margin:0;
+  color:rgba(255,255,255,.72);
+  font-size:1.04rem;
+}
+.contact-quick-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.contact-quick-actions .btn-outline{border-color:rgba(255,255,255,.52)}
+.contact-jump{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:20px;
+  color:#fff;
+  font-size:.84rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.035em;
+}
+.contact-jump span{color:#5FA3EE;font-size:1rem;line-height:1}
+.contact-direct{
+  grid-area:details;
+  padding-top:26px;
+  border-top:1px solid rgba(255,255,255,.14);
+  color:#fff;
+}
+.contact-direct h2{margin-bottom:18px;font-size:1.25rem;letter-spacing:-.02em}
+.contact-direct-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px}
+.contact-direct-item h3{
+  margin:0 0 5px;
+  color:rgba(255,255,255,.52);
+  font-size:.7rem;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.11em;
+}
+.contact-direct-item p{margin:0;color:rgba(255,255,255,.78);font-size:.91rem;line-height:1.55}
+.contact-direct-item a{color:#fff;font-weight:800}
+.contact-form-card{
+  grid-area:form;
+  padding:32px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:0 18px 50px rgba(0,0,0,.22);
+}
+.contact-form-heading{margin-bottom:24px}
+.contact-form-heading .eyebrow{margin-bottom:10px;color:var(--blue)}
+.contact-form-heading h2{margin-bottom:9px;font-size:clamp(2rem,3vw,2.75rem)}
+.contact-form-heading p{margin:0;color:var(--gray);font-size:.94rem}
+.contact-form-card .form-submit{width:100%}
+@media(max-width:1080px){
+  .contact-layout{
+    grid-template-columns:minmax(0,.72fr) minmax(480px,1.28fr);
+    gap:28px 36px;
+  }
+}
+@media(max-width:900px){
+  .contact-hero{padding:56px 0 72px}
+  .contact-layout{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "intro"
+      "form"
+      "details";
+    gap:28px;
+  }
+  .contact-intro{padding-top:0}
+  .contact-intro h1{font-size:clamp(2.8rem,8vw,4.4rem)}
+  .contact-form-card{box-shadow:none}
+}
+@media(max-width:760px){
+  .contact-hero{padding:48px 0 64px}
+  .contact-intro h1{font-size:2.72rem;line-height:.98;margin-bottom:16px}
+  .contact-intro-copy{font-size:.98rem;line-height:1.62}
+  .contact-quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+  .contact-quick-actions .btn{width:100%;min-height:50px;padding-inline:14px}
+  .contact-jump{margin-top:16px}
+  .contact-form-card{padding:24px;border-radius:14px}
+  .contact-form-heading{margin-bottom:20px}
+  .contact-form-heading h2{font-size:2rem}
+  .contact-direct{padding-top:24px}
+  .contact-direct-grid{grid-template-columns:1fr;gap:16px}
+}
+@media(max-width:390px){
+  .contact-quick-actions{grid-template-columns:1fr}
+}
+
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.liftxdoor.com/#organization","name":"LIFTX","alternateName":"LiftX Door Systems","legalName":"LiftX Door Systems LLC","url":"https://www.liftxdoor.com/","logo":{"@type":"ImageObject","url":"https://www.liftxdoor.com/liftx-wordmark.png","width":2960,"height":560},"telephone":"+1-208-995-4321","email":"josh@liftxdoor.com","identifier":"Idaho GC License #1971051","sameAs":["https://www.instagram.com/liftxdoor/","https://www.facebook.com/p/LiftX-Door-Systems-61573926893748/"],"areaServed":["Boise","Meridian","Eagle","Garden City","Nampa","Caldwell","Kuna","Star","Middleton","Mountain Home","McCall","Donnelly","Cascade","Valley County"]},{"@type":"ContactPage","@id":"https://www.liftxdoor.com/contact#webpage","url":"https://www.liftxdoor.com/contact","name":"Contact LIFTX","description":"Contact LIFTX for garage door repair, new doors, commercial service, Full-View systems, builders, operators, and specialty door work.","about":{"@id":"https://www.liftxdoor.com/#organization"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.liftxdoor.com/"},{"@type":"ListItem","position":2,"name":"Contact LIFTX","item":"https://www.liftxdoor.com/contact"}]}]}</script></head><body>
+<header class="site-header">
+<div class="nav-shell">
+<a aria-label="LIFTX home" class="brand" href="/">
+<img alt="LIFTX" height="560" src="liftx-wordmark.png" width="2960"/>
+</a>
+<nav aria-label="Primary navigation" class="desktop-nav">
+<a href="/residential">Residential</a><a href="/commercial">Commercial</a><a href="/garage-door-repair-boise">Repair</a><a href="/garage-door-installation-boise">New Doors</a><a href="/projects">Projects</a>
+<div class="nav-dropdown">
+<button aria-expanded="false" aria-haspopup="true" class="nav-dropbtn" type="button">
+          Brands
+          <svg aria-hidden="true" viewbox="0 0 12 8"><path d="M1 1.5 6 6.5 11 1.5"></path></svg>
+</button>
+<div class="nav-dropmenu">
+<a class="dropdown-featured" href="/garage-door-brands">
+<strong>All Brands &amp; Design Tools</strong>
+<span>Compare manufacturers and visualize your door.</span>
+</a>
+<div class="dropdown-divider"></div>
+<a href="/amarr-garage-doors-boise">Amarr</a><a href="/clopay-garage-doors-boise">Clopay</a><a href="/wayne-dalton-garage-doors-boise">Wayne Dalton</a>
+</div>
+</div>
+<a href="/common-questions">FAQ</a>
+</nav>
+<div class="nav-actions">
+<a aria-label="LIFTX on Instagram" class="social-link" href="https://www.instagram.com/liftxdoor/" rel="noopener" target="_blank">
+<svg aria-hidden="true" viewbox="0 0 24 24"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>
+</a>
+<a aria-label="LIFTX on Facebook" class="social-link" href="https://www.facebook.com/p/LiftX-Door-Systems-61573926893748/" rel="noopener" target="_blank">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M14 8h3V4h-3c-3 0-5 2-5 5v3H6v4h3v5h4v-5h3l1-4h-4V9c0-.7.3-1 1-1z"></path></svg>
+</a>
+<a class="nav-contact active" href="/contact">Contact</a>
+<button aria-expanded="false" aria-label="Open navigation" class="menu-toggle" type="button"><span></span><span></span></button>
+</div>
+</div>
+</header>
+<div aria-hidden="true" class="mobile-menu"><a href="/residential">Residential</a><a href="/commercial">Commercial</a><a href="/garage-door-repair-boise">Repair</a><a href="/garage-door-installation-boise">New Doors</a><a href="/projects">Projects</a><a href="/garage-door-brands">Brands &amp; Design Tools</a><a href="/common-questions">FAQ</a><a href="/builders-contractors">Builders &amp; Contractors</a><a href="/warranty">Warranty</a><a href="/contact">Contact</a></div>
+<main class="contact-page">
+<section class="contact-hero">
+<div class="content-shell contact-layout">
+<div class="contact-intro">
+<p class="eyebrow">Contact LIFTX</p>
+<h1>Tell us what you need.</h1>
+<p class="contact-intro-copy">Call, text, or send the details below. Photos, video, opening sizes, plans, and project requirements help us understand the job before we recommend the next step.</p>
+<div class="contact-quick-actions">
+<a class="btn btn-primary" href="tel:+12089954321">Call LIFTX</a>
+<a class="btn btn-outline" href="sms:+12089954321">Text LIFTX</a>
+</div>
+<a class="contact-jump" href="#contact-form-card">Send a request <span aria-hidden="true">→</span></a>
+</div>
+<div class="contact-form-card" id="contact-form-card">
+<div class="contact-form-heading">
+<p class="eyebrow">Project Details</p>
+<h2>Send a request.</h2>
+<p>Tell us what is happening, where the project is located, and the best way to reach you.</p>
+</div>
+<form action="https://formspree.io/f/mgogpvwg" id="contact-form" method="POST">
+<input name="subject" type="hidden" value="New LIFTX Website Inquiry — {{ service }} — {{ name }}"/>
+<div aria-hidden="true" class="form-honeypot">
+<label for="company-website">Leave this field empty</label>
+<input autocomplete="off" id="company-website" name="_gotcha" tabindex="-1" type="text"/>
+</div>
+<div class="form-grid">
+<div class="field"><label for="name">Name</label><input autocomplete="name" id="name" name="name" required="" type="text"/></div>
+<div class="field"><label for="phone">Phone</label><input autocomplete="tel" id="phone" inputmode="tel" name="phone" required="" type="tel"/></div>
+<div class="field"><label for="email">Email</label><input autocomplete="email" id="email" inputmode="email" name="email" type="email"/></div>
+<div class="field"><label for="city">City</label><input autocomplete="address-level2" id="city" name="city" type="text"/></div>
+<div class="field"><label for="customer-type">Customer type</label><select id="customer-type" name="customer_type"><option>Homeowner</option><option>Business / Commercial</option><option>Builder / Contractor</option><option>Property Manager</option></select></div>
+<div class="field"><label for="service">Service needed</label><select id="service" name="service"><option>Repair</option><option>New Door / Replacement</option><option>Full-View Door</option><option>Commercial Door</option><option>Builder / New Construction</option><option>Operator / Opener</option><option>Maintenance</option><option>Other</option></select></div>
+<div class="field full"><label for="message">Message</label><textarea id="message" name="message" required=""></textarea></div>
+<div class="field full"><div aria-live="polite" class="form-status" id="form-status" role="status"></div></div>
+<div class="field full"><button class="btn btn-primary form-submit" id="form-submit" type="submit">Send Request</button></div>
+</div>
+</form>
+</div>
+<div class="contact-direct">
+<h2>Direct contact</h2>
+<div class="contact-direct-grid">
+<div class="contact-direct-item"><h3>Phone</h3><p><a href="tel:+12089954321">208-995-4321</a></p></div>
+<div class="contact-direct-item"><h3>Email</h3><p><a href="mailto:josh@liftxdoor.com">josh@liftxdoor.com</a></p></div>
+<div class="contact-direct-item"><h3>Photos &amp; video</h3><p>Text job photos, video, or opening details directly to LIFTX.</p></div>
+<div class="contact-direct-item"><h3>Service area</h3><p>Boise, the Treasure Valley, Valley County, and surrounding areas.</p></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="content-shell footer-grid">
+<div class="footer-brand">
+<img alt="LIFTX" height="560" src="liftx-wordmark.png" width="2960"/>
+<p>Residential, commercial, specialty, and premium Full-View overhead door solutions across Boise and the Treasure Valley.</p>
+</div>
+<div><h3>Services</h3><a href="/residential">Residential</a><a href="/commercial">Commercial</a><a href="/garage-door-repair-boise">Repair</a><a href="/garage-door-installation-boise">New Doors</a></div>
+<div><h3>Company</h3><a href="/projects">Projects</a><a href="/builders-contractors">Builders &amp; Contractors</a><a href="/warranty">Warranty</a><a href="/common-questions">FAQ</a><a href="/contact">Contact</a></div>
+<div><h3>Brands</h3><a href="/amarr-garage-doors-boise">Amarr</a><a href="/clopay-garage-doors-boise">Clopay</a><a href="/wayne-dalton-garage-doors-boise">Wayne Dalton</a><a href="/garage-door-brands">All Brands &amp; Design Tools</a></div>
+</div>
+<div class="content-shell footer-bottom"><span>Idaho GC License #1971051</span><span>Built in-house by LIFTX.</span></div>
+</footer>
+<div class="mobile-sticky"><a href="tel:+12089954321">Call</a><a href="sms:+12089954321">Text</a></div>
+<script src="site.js"></script><script src="contact.js"></script></body></html>
