@@ -1,7 +1,0 @@
-# LIFTX Cloudflare Workers routing
-# Cloudflare's default HTML handling automatically serves:
-# residential.html at /residential
-# commercial.html at /commercial
-# and the remaining HTML pages at their extensionless URLs.
-#
-# Add only true legacy redirects below after the production URL audit.
