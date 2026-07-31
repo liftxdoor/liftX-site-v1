@@ -33,8 +33,13 @@ button,input,select,textarea{font:inherit}
 .social-link svg path{fill:currentColor;stroke:none}
 .nav-contact{min-height:42px;padding:0 17px;display:inline-flex;align-items:center;background:var(--blue);border-radius:3px;color:#fff;font-size:.76rem;font-weight:900;text-transform:uppercase;letter-spacing:.035em}
 .nav-contact.active{outline:1px solid rgba(255,255,255,.7);outline-offset:2px}
-.menu-toggle{display:none;width:46px;height:46px;border:1px solid rgba(255,255,255,.22);border-radius:50%;background:transparent;align-items:center;justify-content:center;flex-direction:column;gap:6px}
-.menu-toggle span{width:18px;height:2px;background:#fff}
+.menu-toggle{display:none;width:48px;height:48px;padding:0;border:0;background:transparent;position:relative;align-items:center;justify-content:center;cursor:pointer}
+.menu-toggle:before{content:"";width:34px;height:30px;background:url("/assets/liftx-menu-icon.png") center/contain no-repeat;transition:opacity .16s,transform .16s}
+.menu-toggle span{width:21px;height:2px;background:var(--blue);position:absolute;opacity:0;transition:opacity .16s,transform .16s}
+.menu-toggle[aria-expanded="true"]:before{opacity:0;transform:scale(.75)}
+.menu-toggle[aria-expanded="true"] span{opacity:1}
+.menu-toggle[aria-expanded="true"] span:first-of-type{transform:rotate(45deg)}
+.menu-toggle[aria-expanded="true"] span:last-of-type{transform:rotate(-45deg)}
 .mobile-menu{display:none}
 .eyebrow{margin:0 0 16px;color:#5FA3EE;font-size:.75rem;font-weight:950;text-transform:uppercase;letter-spacing:.15em}
 h1,h2,h3{margin-top:0}
