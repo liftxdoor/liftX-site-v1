@@ -26,9 +26,19 @@
 .collection-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:42px}
 .collection-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:#fff;display:flex;flex-direction:column;transition:transform .18s,border-color .18s,box-shadow .18s}
 .collection-card:hover{transform:translateY(-3px);border-color:#c8d2dd;box-shadow:0 16px 38px rgba(17,17,17,.08)}
-.collection-image{aspect-ratio:3/2;overflow:hidden;background:#e9edf1}
+.collection-image{position:relative;aspect-ratio:3/2;overflow:hidden;background:#e9edf1}
 .collection-image img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
-.collection-card:hover .collection-image img{transform:scale(1.025)}
+.collection-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .28s ease,visibility .28s ease,transform .35s ease}
+.collection-slide.is-active{opacity:1;visibility:visible}
+.collection-card:hover .collection-image>img:not(.collection-slide){transform:scale(1.025)}
+.collection-card:hover .collection-slide.is-active{transform:scale(1.025)}
+.collection-slider{touch-action:pan-y;user-select:none}
+.collection-slider:focus-visible{outline:3px solid rgba(2,86,175,.28);outline-offset:3px}
+.collection-arrow{position:absolute;top:50%;z-index:2;width:42px;height:42px;display:grid;place-items:center;padding:0;border:1px solid rgba(255,255,255,.72);border-radius:50%;background:rgba(2,86,175,.94);color:#fff;font:800 1.7rem/1 Inter,sans-serif;transform:translateY(-50%);cursor:pointer;box-shadow:0 5px 16px rgba(17,17,17,.18);transition:filter .18s,transform .18s}
+.collection-arrow:hover{filter:brightness(.92)}
+.collection-arrow:active{transform:translateY(-50%) scale(.96)}
+.collection-prev{left:12px}.collection-next{right:12px}
+.collection-progress{position:absolute;left:50%;bottom:10px;z-index:2;min-width:46px;padding:7px 10px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(17,17,17,.78);color:#fff;font-size:.7rem;font-weight:900;letter-spacing:.04em;text-align:center;transform:translateX(-50%);backdrop-filter:blur(7px)}
 .collection-body{flex:1;padding:25px 26px 24px;display:flex;flex-direction:column}
 .collection-body small{color:var(--blue);font-size:.7rem;font-weight:950;letter-spacing:.12em;text-transform:uppercase}
 .collection-body h3{margin:9px 0 10px;font-size:1.45rem}
@@ -47,6 +57,38 @@
 .project-facts span{font-weight:850}
 .amarr-steps{margin-top:36px}
 @media(max-width:1020px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.amarr-intro-grid{grid-template-columns:1fr;gap:42px}.selection-points{max-width:760px}.amarr-project{grid-template-columns:minmax(290px,.8fr) minmax(0,1.2fr);gap:42px}.amarr-project-image{height:500px}}
-@media(max-width:760px){.amarr-hero:before{background:linear-gradient(180deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.92) 56%,rgba(0,0,0,.98) 100%),var(--page-image) 66% center/cover no-repeat}.amarr-hero .page-hero-copy{padding-top:58px}.amarr-intro-grid{gap:34px}.selection-points>div{grid-template-columns:38px minmax(0,1fr);gap:8px 12px;padding:19px 0}.selection-points p{grid-column:2}.collection-grid{grid-template-columns:1fr;gap:18px;margin-top:32px}.collection-body{padding:23px 24px 22px}.collection-image{aspect-ratio:16/10}.collection-link{padding-top:18px}.amarr-project{grid-template-columns:1fr;gap:34px}.amarr-project-image{height:430px}.project-facts{grid-template-columns:1fr}.project-facts>div{padding:15px 17px}.amarr-steps{grid-template-columns:1fr}}
+@media(max-width:760px){.amarr-hero:before{background:linear-gradient(180deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.92) 56%,rgba(0,0,0,.98) 100%),var(--page-image) 66% center/cover no-repeat}.amarr-hero .page-hero-copy{padding-top:58px}.amarr-intro-grid{gap:34px}.selection-points>div{grid-template-columns:38px minmax(0,1fr);gap:8px 12px;padding:19px 0}.selection-points p{grid-column:2}.collection-grid{grid-template-columns:1fr;gap:18px;margin-top:32px}.collection-body{padding:23px 24px 22px}.collection-image{aspect-ratio:16/10}.collection-arrow{width:44px;height:44px}.collection-prev{left:10px}.collection-next{right:10px}.collection-progress{bottom:9px}.collection-link{padding-top:18px}.amarr-project{grid-template-columns:1fr;gap:34px}.amarr-project-image{height:430px}.project-facts{grid-template-columns:1fr}.project-facts>div{padding:15px 17px}.amarr-steps{grid-template-columns:1fr}}
 @media(max-width:460px){.amarr-project-image{height:370px}.collection-image{aspect-ratio:3/2}}
-@media(prefers-reduced-motion:reduce){.collection-card,.collection-image img{transition:none}.collection-card:hover{transform:none}.collection-card:hover .collection-image img{transform:none}}
+@media(prefers-reduced-motion:reduce){.collection-card,.collection-image img,.collection-arrow{transition:none}.collection-card:hover{transform:none}.collection-card:hover .collection-image img{transform:none}}
+
+/* Clopay collection page and C-Power comparison */
+.clopay-hero:before{background:linear-gradient(90deg,rgba(0,0,0,.97) 0%,rgba(0,0,0,.88) 46%,rgba(0,0,0,.24) 100%),url('/assets/brands/clopay/avante.webp') 68% 56%/cover no-repeat}
+.clopay-hero .page-hero-copy{max-width:790px}
+.cpower-section{background:#fff}
+.cpower-grid{display:grid;grid-template-columns:minmax(320px,.82fr) minmax(0,1.18fr);gap:68px;align-items:center}
+.cpower-copy>p:not(.eyebrow){max-width:610px;color:var(--gray);font-size:1.02rem}
+.cpower-points{margin:30px 0 24px;border-top:1px solid var(--line)}
+.cpower-points>div{display:grid;grid-template-columns:118px minmax(0,1fr);gap:18px;padding:17px 0;border-bottom:1px solid var(--line)}
+.cpower-points strong{font-size:.84rem}
+.cpower-points span{color:var(--gray);font-size:.88rem;line-height:1.55}
+.cpower-slider{min-width:0}
+.cpower-stage{position:relative;aspect-ratio:1920/1278;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#111;box-shadow:0 18px 45px rgba(17,17,17,.1);touch-action:pan-y;user-select:none}
+.cpower-slide{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s ease}
+.cpower-slide.is-active{opacity:1;visibility:visible}
+.cpower-slide img{width:100%;height:100%;object-fit:cover}
+.cpower-slide figcaption{position:absolute;left:18px;bottom:18px;display:flex;align-items:center;gap:10px;padding:10px 13px;border:1px solid rgba(255,255,255,.22);border-radius:9px;background:rgba(17,17,17,.82);color:#fff;backdrop-filter:blur(8px)}
+.cpower-slide figcaption strong{font-size:.82rem;text-transform:uppercase;letter-spacing:.08em}
+.cpower-slide figcaption span{color:rgba(255,255,255,.7);font-size:.78rem}
+.cpower-arrow{position:absolute;top:50%;z-index:2;width:48px;height:48px;display:grid;place-items:center;padding:0;border:1px solid rgba(255,255,255,.34);border-radius:50%;background:rgba(17,17,17,.82);color:#fff;transform:translateY(-50%);cursor:pointer;transition:background .18s,border-color .18s}
+.cpower-arrow:hover{background:var(--blue);border-color:var(--blue)}
+.cpower-arrow span{font-size:1.25rem;line-height:1}
+.cpower-prev{left:16px}
+.cpower-next{right:16px}
+.cpower-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.cpower-dot{min-height:46px;padding:0 18px;border:1px solid var(--line);border-radius:3px;background:#fff;color:var(--gray);font-size:.8rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em;cursor:pointer;transition:background .18s,color .18s,border-color .18s}
+.cpower-dot:hover{border-color:var(--blue);color:var(--blue)}
+.cpower-dot.is-active{border-color:var(--blue);background:var(--blue);color:#fff}
+@media(max-width:1020px){.cpower-grid{grid-template-columns:1fr;gap:42px}.cpower-copy{max-width:760px}.cpower-stage{max-width:900px}}
+@media(max-width:760px){.clopay-hero:before{background:linear-gradient(180deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.9) 54%,rgba(0,0,0,.98) 100%),url('/assets/brands/clopay/avante.webp') 65% center/cover no-repeat}.clopay-hero .page-hero-copy{padding-top:58px}.cpower-grid{gap:32px}.cpower-points>div{grid-template-columns:1fr;gap:6px}.cpower-stage{border-radius:14px}.cpower-arrow{width:44px;height:44px}.cpower-prev{left:10px}.cpower-next{right:10px}.cpower-slide figcaption{left:12px;bottom:12px}.cpower-controls{margin-top:10px}}
+@media(max-width:460px){.cpower-slide figcaption span{display:none}.cpower-arrow{top:auto;bottom:10px;transform:none}.cpower-prev{left:auto;right:62px}.cpower-next{right:10px}.cpower-slide figcaption{right:auto;bottom:10px}}
+@media(prefers-reduced-motion:reduce){.cpower-slide,.cpower-arrow,.cpower-dot{transition:none}}
