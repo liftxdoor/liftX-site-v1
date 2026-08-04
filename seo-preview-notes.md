@@ -16,4 +16,6 @@ This branch is for visual and functional review before merging.
 - Confirm the expanded footer does not feel crowded.
 - Test Call, email, repair-page, menu, and sticky mobile links.
 
+Preview deployment retriggered after the pull request was opened for review.
+
 No production merge should occur until the preview is approved.
