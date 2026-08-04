@@ -6,8 +6,18 @@
   const viewAllLinks = document.querySelectorAll('[data-google-reviews-link]');
   const fallbackUrl = 'https://www.google.com/maps/search/?api=1&query=LiftX%20Door%20Systems%20Eagle%20ID';
 
+  const safeGoogleUrl = (url, fallback = fallbackUrl) => {
+    if (typeof url !== 'string') return fallback;
+    try {
+      const parsed = new URL(url);
+      return parsed.protocol === 'https:' && (parsed.hostname === 'google.com' || parsed.hostname.endsWith('.google.com')) ? parsed.href : fallback;
+    } catch {
+      return fallback;
+    }
+  };
+
   const setReviewLinks = (url) => {
-    const safeUrl = typeof url === 'string' && url.startsWith('https://www.google.com/maps') ? url : fallbackUrl;
+    const safeUrl = safeGoogleUrl(url);
     viewAllLinks.forEach((link) => {
       link.href = safeUrl;
     });
@@ -16,6 +26,14 @@
   const stars = (rating) => {
     const rounded = Math.max(1, Math.min(5, Math.round(Number(rating) || 5)));
     return '★'.repeat(rounded) + '☆'.repeat(5 - rounded);
+  };
+
+  const makeGoogleAttribution = () => {
+    const attribution = document.createElement('span');
+    attribution.className = 'google-maps-attribution';
+    attribution.setAttribute('translate', 'no');
+    attribution.textContent = 'Google Maps';
+    return attribution;
   };
 
   const renderUnavailable = () => {
@@ -55,8 +73,8 @@
       const summaryText = document.createElement('span');
       const rating = Number(data.rating || 0).toFixed(1);
       const count = Number(data.userRatingCount || 0).toLocaleString();
-      summaryText.textContent = `${rating} on Google${count !== '0' ? ` · ${count} reviews` : ''}`;
-      summary.append(starLine, summaryText);
+      summaryText.textContent = `${rating}${count !== '0' ? ` · ${count} reviews` : ''}`;
+      summary.append(starLine, summaryText, makeGoogleAttribution());
     }
 
     root.replaceChildren();
@@ -83,20 +101,40 @@
       const meta = document.createElement('div');
       meta.className = 'review-meta';
       const authorWrap = document.createElement('div');
-      const author = document.createElement('span');
+      authorWrap.className = 'review-author-wrap';
+
+      if (review.authorPhotoUri) {
+        const avatar = document.createElement('img');
+        avatar.className = 'review-avatar';
+        avatar.src = review.authorPhotoUri;
+        avatar.alt = `${review.author || 'Google reviewer'} profile photo`;
+        avatar.width = 42;
+        avatar.height = 42;
+        avatar.loading = 'lazy';
+        authorWrap.append(avatar);
+      }
+
+      const authorCopy = document.createElement('div');
+      const author = review.authorUri ? document.createElement('a') : document.createElement('span');
       author.className = 'review-author';
       author.textContent = review.author || 'Google reviewer';
+      if (review.authorUri) {
+        author.href = safeGoogleUrl(review.authorUri, safeGoogleUrl(review.googleMapsUri));
+        author.target = '_blank';
+        author.rel = 'noopener';
+      }
       const date = document.createElement('span');
       date.className = 'review-date';
       date.textContent = review.relativeTime || '';
-      authorWrap.append(author, date);
+      authorCopy.append(author, date);
+      authorWrap.append(authorCopy);
 
       const source = document.createElement('a');
       source.className = 'review-google-link';
-      source.href = review.googleMapsUri || data.googleMapsUri || fallbackUrl;
+      source.href = safeGoogleUrl(review.googleMapsUri, safeGoogleUrl(data.googleMapsUri));
       source.target = '_blank';
       source.rel = 'noopener';
-      source.textContent = 'View on Google →';
+      source.textContent = 'View review on Google →';
       meta.append(authorWrap, source);
       slide.append(starLine, quote, meta);
       track.append(slide);
@@ -126,7 +164,14 @@
       return dot;
     });
 
-    root.append(viewport, previous, next, dots);
+    const disclosure = document.createElement('div');
+    disclosure.className = 'review-disclosure';
+    disclosure.append(makeGoogleAttribution());
+    const order = document.createElement('span');
+    order.textContent = 'Reviews are selected and ordered by Google relevance.';
+    disclosure.append(order);
+
+    root.append(viewport, previous, next, dots, disclosure);
 
     let current = 0;
     let timer;
