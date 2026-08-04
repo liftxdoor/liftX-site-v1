@@ -1,9 +1,0 @@
-worker.js
-wrangler.jsonc
-seo-preview-notes.md
-.git
-.git/**
-.github
-.github/**
-node_modules
-node_modules/**
