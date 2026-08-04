@@ -1,4 +1,4 @@
-const BUSINESS_QUERY = 'LiftX Door Systems, 153 E Rocky Dr, Eagle, ID 83616';
+const BUSINESS_QUERY = 'LIFTX Door Systems Idaho';
 
 const json = (body, status = 200) => new Response(JSON.stringify(body), {
   status,
