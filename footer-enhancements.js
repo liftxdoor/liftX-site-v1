@@ -34,7 +34,8 @@
       <span>Idaho GC License #1971051</span>
       <span class="footer-built">
         <svg class="footer-house" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-7 9 7"></path><path d="M5 10v10h14V10"></path><path d="M9 20v-6h6v6"></path></svg>
-        Built in-house by <strong>LIFTX</strong>.
+        <span>Built in-house by</span>
+        <img class="footer-built-logo" src="/liftx-wordmark.png" alt="LIFTX">
       </span>`;
   }
 })();
