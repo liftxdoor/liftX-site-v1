@@ -168,3 +168,6 @@ if(toggle&&menu){
     if(event.matches) setMenu(false);
   });
 }
+
+/* Keep the improved footer consistent across every page. */
+import('/footer-enhancements.js').catch(()=>{});
