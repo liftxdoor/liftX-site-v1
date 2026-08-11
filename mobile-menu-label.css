@@ -58,4 +58,9 @@
     width:54px;
     height:58px;
   }
+
+  /* Preview only: same LIFTX hero photo, resized and recompressed by Cloudflare for mobile. */
+  .home-hero{
+    background-image:url("https://www.liftxdoor.com/cdn-cgi/image/width=768,quality=68,format=auto/assets/projects/full-view-commercial-door-exterior-05.webp");
+  }
 }
