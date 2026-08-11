@@ -31,12 +31,13 @@ jobs:
           elif new_img not in s:
               raise SystemExit('LCP image decoding target not found')
 
-          old_script = '<script src="/site.js"></script>'
-          new_script = '<script src="/site.js" defer></script>'
-          if old_script in s:
-              s = s.replace(old_script, new_script, 1)
-          elif new_script not in s:
-              raise SystemExit('site.js target not found')
+          external_script = '<script src="/site.js" defer></script>'
+          js = Path('site.js').read_text().strip()
+          inline_script = '<script>' + js + '</script>'
+          if external_script in s:
+              s = s.replace(external_script, inline_script, 1)
+          elif inline_script not in s:
+              raise SystemExit('site.js inline target not found')
 
           p.write_text(s)
           PY
@@ -48,6 +49,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No changes.'
           else
-            git commit -m 'Remove final homepage LCP blockers'
+            git commit -m 'Inline homepage navigation script for faster LCP'
             git push origin HEAD:agent/home-pagespeed-100-preview
           fi
