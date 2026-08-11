@@ -1,54 +1,39 @@
 name: Expand brands dropdown
-
 on:
   push:
     branches:
       - agent/expand-brands-dropdown
-
 permissions:
   contents: write
-
 jobs:
   expand:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           ref: agent/expand-brands-dropdown
-
-      - name: Add existing destinations to Brands dropdown
+      - name: Expand dropdown
         run: |
           python - <<'PY'
           from pathlib import Path
-
           old = '<a href="/wayne-dalton-garage-doors-boise">Wayne Dalton</a>'
-          extra = '''<div class="dropdown-divider"></div>
-<a href="/residential">Residential Doors</a>
-<a href="/commercial">Commercial Doors</a>
-<a href="/garage-door-openers-boise">Garage Door Openers</a>
-<a href="/builders-contractors">Builders &amp; Contractors</a>'''
-
+          extra = '<div class="dropdown-divider"></div><a href="/residential">Residential Doors</a><a href="/commercial">Commercial Doors</a><a href="/garage-door-openers-boise">Garage Door Openers</a><a href="/builders-contractors">Builders &amp; Contractors</a>'
           changed = []
           for path in Path('.').glob('*.html'):
               text = path.read_text()
-              if old not in text:
+              header = text.split('</nav>', 1)[0] if '</nav>' in text else text
+              if old not in header or 'Residential Doors</a>' in header:
                   continue
-              if '<a href="/builders-contractors">Builders &amp; Contractors</a>' in text.split(old, 1)[0][-1000:]:
-                  continue
-              text = text.replace(old, old + '\n' + extra, 1)
+              text = text.replace(old, old + extra, 1)
               path.write_text(text)
               changed.append(path.name)
-
           print('Updated:', ', '.join(changed))
-          if not changed:
-              raise SystemExit('No dropdowns updated')
           PY
-
-      - name: Commit dropdown expansion
+      - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add '*.html'
-          git commit -m "Expand Brands dropdown with existing site destinations"
+          git add -- '*.html'
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Expand Brands dropdown with existing destinations"
           git push origin HEAD:agent/expand-brands-dropdown
