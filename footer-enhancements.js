@@ -35,7 +35,7 @@
       <span class="footer-built">
         <svg class="footer-house" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-7 9 7"></path><path d="M5 10v10h14V10"></path><path d="M9 20v-6h6v6"></path></svg>
         <span>Built in-house by</span>
-        <img class="footer-built-logo" src="/liftx-wordmark.png" alt="LIFTX">
+        <img class="footer-built-logo" src="/liftx-wordmark-optimized.svg" alt="LIFTX" width="526" height="100" loading="lazy" decoding="async">
       </span>`;
   }
 })();
