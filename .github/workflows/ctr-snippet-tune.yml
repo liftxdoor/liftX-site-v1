@@ -34,11 +34,11 @@ jobs:
                   ('<meta content="Broken spring, off-track door, cable, roller, or opener trouble? Call or text LIFTX for garage door repair in Boise and across the Treasure Valley." property="og:description"/>', '<meta content="Broken spring, opener, cable, or off-track door? Call or text owner-operated LIFTX for garage door repair across Boise and the Treasure Valley." property="og:description"/>'),
               ],
               "garage-door-installation-boise.html": [
-                  ("<title>Garage Door Installation &amp; Replacement Boise | LIFTX</title>", "<title>Garage Door Installation Boise | New Doors | LIFTX</title>"),
+                  ("<title>Garage Door Installation & Replacement Boise | LIFTX</title>", "<title>Garage Door Installation Boise | New Doors | LIFTX</title>"),
                   ('<meta content="Garage door installation and replacement in Boise. Complete new door systems for homes, new construction, shops, commercial buildings, and Full-View projects." name="description"/>', '<meta content="New garage door installation and replacement for homes, shops, builders, and commercial properties across Boise and the Treasure Valley." name="description"/>'),
-                  ('<meta content="Garage Door Installation &amp; Replacement Boise | LIFTX" name="twitter:title"/>', '<meta content="Garage Door Installation Boise | New Doors | LIFTX" name="twitter:title"/>'),
+                  ('<meta content="Garage Door Installation & Replacement Boise | LIFTX" name="twitter:title"/>', '<meta content="Garage Door Installation Boise | New Doors | LIFTX" name="twitter:title"/>'),
                   ('<meta content="Garage door installation and replacement in Boise. Complete new door systems for homes, new construction, shops, commercial buildings, and Full-View projects." name="twitter:description"/>', '<meta content="New garage door installation and replacement for homes, shops, builders, and commercial properties across Boise and the Treasure Valley." name="twitter:description"/>'),
-                  ('<meta content="Garage Door Installation &amp; Replacement Boise | LIFTX" property="og:title"/>', '<meta content="Garage Door Installation Boise | New Doors | LIFTX" property="og:title"/>'),
+                  ('<meta content="Garage Door Installation & Replacement Boise | LIFTX" property="og:title"/>', '<meta content="Garage Door Installation Boise | New Doors | LIFTX" property="og:title"/>'),
                   ('<meta content="Garage door installation and replacement in Boise. Complete new door systems for homes, new construction, shops, commercial buildings, and Full-View projects." property="og:description"/>', '<meta content="New garage door installation and replacement for homes, shops, builders, and commercial properties across Boise and the Treasure Valley." property="og:description"/>'),
               ],
           }
