@@ -1,0 +1,49 @@
+name: Spring repair pricing
+
+on:
+  push:
+    branches:
+      - agent/spring-repair-push
+
+permissions:
+  contents: write
+
+jobs:
+  add-price:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/spring-repair-push
+
+      - name: Add transparent spring repair pricing
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('garage-door-repair-boise.html')
+          text = path.read_text()
+
+          needle = '''<div class="section-head"><p class="eyebrow">Broken Spring Repair</p><h2>Garage door spring repair in Boise &amp; the Treasure Valley.</h2><p>Broken torsion and extension springs can leave a garage door heavy, stuck, or unsafe to operate. LIFTX provides spring diagnosis and replacement with correct spring sizing, matched-pair replacement on two-spring systems, door balancing, and complete system testing.</p></div>'''
+
+          pricing = '''<div class="section-head"><p class="eyebrow">Broken Spring Repair</p><h2>Garage door spring repair in Boise &amp; the Treasure Valley.</h2><p>Broken torsion and extension springs can leave a garage door heavy, stuck, or unsafe to operate. LIFTX provides spring diagnosis and replacement with correct spring sizing, matched-pair replacement on two-spring systems, door balancing, and complete system testing.</p></div>
+<div class="note" style="margin:28px 0"><strong style="display:block;font-size:1.35rem;margin-bottom:8px">Standard double-wide spring pair — $399 installed</strong><p style="margin:0 0 12px">For a standard residential double-wide, two-spring torsion system. Includes a matched pair of standard-cycle torsion springs, removal and installation, door balance and adjustment, and complete system safety testing.</p><p style="margin:0;color:var(--gray)"><strong>Quoted separately:</strong> oversized or specialty springs, high-cycle upgrades, spring conversions, damaged supporting hardware, commercial doors, and travel outside the standard service area. <a href="/warranty" style="color:var(--blue);font-weight:800">Warranty information →</a></p></div>'''
+
+          if needle not in text:
+              raise SystemExit('Spring section intro not found')
+          text = text.replace(needle, pricing, 1)
+          path.write_text(text)
+          PY
+
+      - name: Commit pricing
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add garage-door-repair-boise.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Add transparent $399 spring repair pricing"
+          git push origin HEAD:agent/spring-repair-push
