@@ -19,11 +19,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="/site.css">
-<link rel="stylesheet" href="/home.css">
+<style>
+.home-hero{min-height:690px;position:relative;color:#fff;background:url("/assets/projects/full-view-commercial-door-exterior-05.webp") 58% center/cover no-repeat;overflow:hidden}
+.home-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.96) 0%,rgba(0,0,0,.88) 29%,rgba(0,0,0,.46) 55%,rgba(0,0,0,.10) 80%,rgba(0,0,0,.03) 100%)}
+.home-hero-inner{position:relative;z-index:1;width:min(var(--max),calc(100% - (var(--gutter)*2)));margin:auto}
+.home-hero-copy{max-width:720px;padding:88px 0 72px}
+.home-hero-copy>p:not(.eyebrow){max-width:630px;color:rgba(255,255,255,.84);font-size:1.08rem}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
+.trust-row{max-width:850px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,.2)}
+.trust-item{display:flex;gap:11px;align-items:flex-start;color:#fff;font-size:.82rem;line-height:1.45;font-weight:760}
+.trust-mark{font-size:1.45rem;line-height:1;color:#fff}
+.quick-strip{border-bottom:1px solid var(--line)}
+.quick-grid{width:min(var(--max),calc(100% - (var(--gutter)*2)));margin:auto;display:grid;grid-template-columns:1.12fr .92fr 1fr}
+.quick-card{min-height:210px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:16px;padding:34px 30px;border-right:1px solid var(--line)}
+.quick-card:last-child{border-right:0}.quick-icon{color:var(--blue);font-size:1.25rem}.quick-label{margin:0 0 8px;color:var(--blue);font-size:.7rem;font-weight:950;letter-spacing:.12em;text-transform:uppercase}.quick-card h2{font-size:1.32rem;line-height:1.15;letter-spacing:-.025em;margin-bottom:10px}.quick-card p:not(.quick-label){margin:0;color:var(--gray);font-size:.88rem}.quick-card a{display:inline-block;margin-top:17px;color:var(--blue);font-size:.76rem;font-weight:900;text-transform:uppercase}
+.route-list{margin-top:44px;border-top:1px solid #ccd2d9}
+.route-link{min-height:132px;display:grid;grid-template-columns:50px minmax(0,1fr) 26px;gap:22px;align-items:center;border-bottom:1px solid #ccd2d9;transition:.18s}
+.route-link:hover{padding-left:12px;background:#fff}.route-link>span{color:var(--blue);font-weight:900;font-size:.78rem}.route-link h3{margin:0 0 7px}.route-link p{margin:0;color:var(--gray);font-size:.92rem}.route-link b{font-size:1.3rem;color:var(--blue)}.route-featured{background:#fff}
+@media(max-width:760px){.home-hero{min-height:730px;background-position:58% center}.home-hero-copy{padding:82px 0 64px}.hero-actions{display:block}.hero-actions .btn{width:100%}.hero-actions .btn-outline{display:none}.trust-row{grid-template-columns:1fr 1fr;gap:19px 13px;margin-top:40px}.quick-grid{grid-template-columns:1fr}.quick-card{border-right:0;border-bottom:1px solid var(--line);min-height:auto;padding:28px 0}.route-link{grid-template-columns:36px minmax(0,1fr) 18px;gap:13px;min-height:150px}.route-link:hover{padding-left:0;background:transparent}}
+</style>
 <link rel="stylesheet" href="/mobile-menu-label.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/mobile-menu-label.css"></noscript>
 <link rel="stylesheet" href="/home-enhancements.css" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="/home-enhancements.css"></noscript>
+<link rel="stylesheet" href="/footer-enhancements.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="/footer-enhancements.css"></noscript>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"HomeAndConstructionBusiness","@id":"https://www.liftxdoor.com/#organization","name":"LIFTX","legalName":"LiftX Door Systems LLC","url":"https://www.liftxdoor.com/","telephone":"+1-208-995-4321","email":"josh@liftxdoor.com","logo":"https://www.liftxdoor.com/liftx-wordmark.png","image":"https://www.liftxdoor.com/assets/projects/full-view-commercial-door-exterior-05.webp","description":"Licensed, owner-operated garage door company serving residential, commercial, new construction, opener, replacement, and specialty door projects across Boise and the Treasure Valley.","areaServed":["Boise","Meridian","Eagle","Garden City","Nampa","Caldwell","Kuna","Star","Middleton","McCall","Donnelly","Cascade","Valley County"],"sameAs":["https://www.instagram.com/liftxdoor/","https://www.facebook.com/p/LiftX-Door-Systems-61573926893748/"],"identifier":{"@type":"PropertyValue","name":"Idaho GC License","value":"1971051"},"contactPoint":{"@type":"ContactPoint","telephone":"+1-208-995-4321","contactType":"customer service","areaServed":"US-ID","availableLanguage":"English"}},{"@type":"WebSite","url":"https://www.liftxdoor.com/","name":"LIFTX","publisher":{"@id":"https://www.liftxdoor.com/#organization"}}]}</script>
 </head>
 <body>
@@ -142,7 +162,7 @@
   <div class="content-shell footer-bottom">
     <span>Serving Boise and the Treasure Valley</span>
     <span>Idaho GC License #1971051</span>
-    <span class="footer-built"><svg class="footer-house" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-7 9 7"></path><path d="M5 10v10h14V10"></path><path d="M9 20v-6h6v6"></path></svg>Built in-house by <strong>LIFTX</strong>.</span>
+    <span class="footer-built"><svg class="footer-house" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-7 9 7"></path><path d="M5 10v10h14V10"></path><path d="M9 20v-6h6v6"></path></svg><span>Built in-house by</span><img class="footer-built-logo" src="/liftx-wordmark-optimized.svg" alt="LIFTX" width="526" height="100" loading="lazy" decoding="async"></span>
   </div>
 </footer>
 <div class="mobile-sticky"><a href="tel:+12089954321">Call</a><a href="sms:+12089954321">Text</a></div>
