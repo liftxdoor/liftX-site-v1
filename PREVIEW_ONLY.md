@@ -1,0 +1,1 @@
+This branch exists only to test homepage performance. Do not merge unless the PageSpeed result is green and the rendered homepage matches production.
