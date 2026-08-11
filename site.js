@@ -169,5 +169,8 @@ if(toggle&&menu){
   });
 }
 
-/* Keep the improved footer consistent across every page. */
-import('/footer-enhancements.js').catch(()=>{});
+/* Keep the improved footer consistent across pages that do not already include it. */
+const footerIsEnhanced=document.querySelector('.footer-contact')&&document.querySelector('.footer-built-logo');
+if(!footerIsEnhanced){
+  import('/footer-enhancements.js').catch(()=>{});
+}
