@@ -1,5 +1,6 @@
 @import url('/footer-enhancements.css');
 .google-reviews-section{background:var(--light);border-top:1px solid var(--line)}
+.google-reviews-section .eyebrow{color:var(--blue)}
 .google-reviews-head{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;margin-bottom:36px}
 .google-reviews-head>div{max-width:760px}
 .google-reviews-head h2{margin-bottom:14px}
