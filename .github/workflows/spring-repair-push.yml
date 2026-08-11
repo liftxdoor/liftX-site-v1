@@ -1,0 +1,89 @@
+name: Spring repair SEO push
+
+on:
+  push:
+    branches:
+      - agent/spring-repair-push
+
+permissions:
+  contents: write
+
+jobs:
+  update-spring-content:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/spring-repair-push
+
+      - name: Strengthen spring repair signals
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          repair = Path('garage-door-repair-boise.html')
+          text = repair.read_text()
+
+          replacements = [
+              (
+                  '<p class="eyebrow">Garage Door Repair • Boise &amp; Treasure Valley</p>',
+                  '<p class="eyebrow">Broken Spring &amp; Garage Door Repair • Boise &amp; Treasure Valley</p>'
+              ),
+              (
+                  '<div class="page-actions"><a class="btn btn-primary" href="/contact">Request Garage Door Repair</a><a class="btn btn-outline" href="tel:+12089954321">Call LIFTX</a></div>',
+                  '<div class="page-actions"><a class="btn btn-primary" href="/contact">Request Spring / Door Repair</a><a class="btn btn-outline" href="tel:+12089954321">Call LIFTX</a></div>'
+              ),
+              (
+                  '<div class="section-head"><p class="eyebrow">Broken Spring Repair</p><h2>A broken spring changes how the entire door carries its weight.</h2><p>The opener is not designed to replace the spring’s counterbalance. If the door is heavy, crooked, or will not open, stop operating it and have the complete system inspected.</p></div>',
+                  '<div class="section-head"><p class="eyebrow">Broken Spring Repair</p><h2>Garage door spring repair in Boise &amp; the Treasure Valley.</h2><p>Broken torsion and extension springs can leave a garage door heavy, stuck, or unsafe to operate. LIFTX provides spring diagnosis and replacement with correct spring sizing, matched-pair replacement on two-spring systems, door balancing, and complete system testing.</p></div>'
+              ),
+              (
+                  '<div class="note" style="margin-top:28px"><strong>Do not force the door:</strong> Operating a garage door with a broken spring can damage the opener, cables, sections, or hardware and can create a safety hazard.</div>\n</div></section>',
+                  '<div class="note" style="margin-top:28px"><strong>Do not force the door:</strong> Operating a garage door with a broken spring can damage the opener, cables, sections, or hardware and can create a safety hazard.</div>\n<div class="page-actions" style="margin-top:24px"><a class="btn btn-primary" href="tel:+12089954321">Call for Spring Repair</a><a class="btn" style="border:1px solid var(--blue);color:var(--blue)" href="sms:+12089954321">Text LIFTX</a></div>\n</div></section>'
+              ),
+          ]
+
+          for old, new in replacements:
+              if old not in text:
+                  raise SystemExit(f'Missing expected repair markup: {old[:90]}')
+              text = text.replace(old, new, 1)
+
+          # Put the spring section directly after the hero, ahead of the general repair-process section.
+          pattern = re.compile(r'(<section class="section"><div class="content-shell split">.*?</section>)\n(<section class="section light" id="broken-spring-repair">.*?</section>)', re.S)
+          match = pattern.search(text)
+          if not match:
+              raise SystemExit('Could not find repair-process + spring sections to reorder')
+          text = text[:match.start()] + match.group(2) + '\n' + match.group(1) + text[match.end():]
+          repair.write_text(text)
+
+          # Strengthen internal relevance without changing homepage architecture.
+          home = Path('index.html')
+          home_text = home.read_text()
+          old = 'Broken springs, heavy doors, off-track doors, cables, openers, commercial repair, and preventative maintenance.'
+          new = 'Broken spring repair, heavy or unbalanced doors, off-track doors, cables, openers, commercial repair, and preventative maintenance.'
+          if old in home_text:
+              home_text = home_text.replace(old, new, 1)
+              home.write_text(home_text)
+
+          residential = Path('residential.html')
+          res_text = residential.read_text()
+          old = 'Broken springs, cables, rollers, hinges, off-track doors, noisy operation, and general repairs.'
+          new = 'Broken spring repair, cables, rollers, hinges, off-track doors, noisy operation, and general repairs.'
+          if old in res_text:
+              res_text = res_text.replace(old, new, 1)
+              residential.write_text(res_text)
+          PY
+
+      - name: Commit spring repair content
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add garage-door-repair-boise.html index.html residential.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Prioritize broken spring repair content"
+          git push origin HEAD:agent/spring-repair-push
