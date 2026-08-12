@@ -18,6 +18,48 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="brands.css">
+<style>
+.brand-landing-hero{overflow:visible;background:#0b0d10}
+.brand-landing-hero .page-hero-inner{min-height:520px}
+.brand-hero-layout{width:100%;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.72fr);gap:76px;align-items:center}
+.brand-landing-hero .page-hero-copy{max-width:790px;padding:72px 0 112px}
+.brand-landing-hero .page-hero-copy>p:not(.eyebrow){max-width:720px}
+.brand-hero-guide{align-self:center;border-top:1px solid rgba(255,255,255,.18)}
+.brand-hero-guide>p{margin:0;padding:0 0 18px;color:#5FA3EE;font-size:.72rem;font-weight:950;letter-spacing:.13em;text-transform:uppercase}
+.brand-guide-row{display:grid;grid-template-columns:34px minmax(0,1fr) 18px;gap:12px;align-items:center;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.18);color:#fff}
+.brand-guide-row span{color:#5FA3EE;font-size:.7rem;font-weight:950;letter-spacing:.08em}
+.brand-guide-row strong{display:block;font-size:1rem;letter-spacing:-.01em}
+.brand-guide-row small{display:block;margin-top:4px;color:rgba(255,255,255,.58);font-size:.76rem;line-height:1.45}
+.brand-guide-row b{color:#5FA3EE;font-size:1.05rem}
+.dealer-bridge{position:absolute;left:0;right:0;bottom:-58px;z-index:3}
+.dealer-bridge-inner{width:min(var(--max),calc(100% - (var(--gutter)*2)));margin-inline:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.dealer-bridge-card{min-height:116px;padding:20px 22px;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto 1fr;gap:6px 16px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 15px 34px rgba(17,17,17,.1);transition:transform .18s,border-color .18s,box-shadow .18s}
+.dealer-bridge-card:hover{transform:translateY(-3px);border-color:#c8d2dd;box-shadow:0 20px 42px rgba(17,17,17,.13)}
+.dealer-bridge-card small{grid-column:1/-1;color:var(--blue);font-size:.65rem;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+.dealer-bridge-logo{min-width:0;display:flex;align-items:center;height:44px;color:var(--black);font-size:1.25rem;font-weight:900;letter-spacing:-.03em}
+.dealer-bridge-logo img{display:block;max-width:128px;max-height:42px;width:auto;height:auto;object-fit:contain}
+.dealer-bridge-card>span:last-child{color:var(--blue);font-size:.82rem;font-weight:900}
+.brands-resource-section{padding-top:120px}
+@media(max-width:960px){
+  .brand-hero-layout{grid-template-columns:1fr;gap:30px}
+  .brand-landing-hero .page-hero-inner{min-height:auto;display:block}
+  .brand-landing-hero .page-hero-copy{padding:64px 0 10px}
+  .brand-hero-guide{max-width:760px;margin-bottom:34px}
+  .dealer-bridge{position:static;background:#fff;padding:16px 0 18px}
+  .dealer-bridge-inner{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;padding-right:20px;scrollbar-width:none}
+  .dealer-bridge-inner::-webkit-scrollbar{display:none}
+  .dealer-bridge-card{min-width:min(72vw,300px);min-height:104px;scroll-snap-align:start;box-shadow:none}
+  .brands-resource-section{padding-top:68px}
+}
+@media(max-width:760px){
+  .brand-landing-hero .page-hero-copy{padding:56px 0 8px}
+  .brand-landing-hero h1{font-size:clamp(2.8rem,13vw,4rem)}
+  .brand-hero-guide{margin-bottom:26px}
+  .brand-guide-row{padding:15px 0}
+  .dealer-bridge-card{min-width:78vw;padding:18px 20px}
+}
+@media(prefers-reduced-motion:reduce){.dealer-bridge-card{transition:none}.dealer-bridge-card:hover{transform:none}}
+</style>
 
 </head><body>
 <header class="site-header">
@@ -57,22 +99,37 @@
 </header>
 <div class="mobile-menu" aria-hidden="true" inert><a href="/residential">Residential</a><a href="/commercial">Commercial</a><a href="/garage-door-repair-boise">Repair</a><a href="/garage-door-installation-boise">New Doors</a><a href="/projects">Projects</a><a href="/garage-door-brands">Brands & Design Tools</a><a href="/common-questions">FAQ</a><a href="/builders-contractors">Builders & Contractors</a><a href="/warranty">Warranty</a><a href="/contact">Contact</a></div>
 <main>
-<section class="page-hero">
+<section class="page-hero brand-landing-hero">
   <div class="content-shell page-hero-inner">
-    <div class="page-hero-copy">
-      <p class="eyebrow">Brands & Design Tools</p>
-      <h1>Explore the door before requesting the quote.</h1>
-      <p>Use official manufacturer tools to narrow the look. LIFTX verifies the actual product, dimensions, construction, availability, and installation requirements before ordering.</p>
-      <div class="page-actions"><a class="btn btn-primary" href="/contact">Request Product Help</a></div>
+    <div class="brand-hero-layout">
+      <div class="page-hero-copy">
+        <p class="eyebrow">Brands & Design Tools</p>
+        <h1>Find the door you actually want.</h1>
+        <p>Start with the manufacturer, style, and official design tools. When something catches your eye, LIFTX verifies the exact product, opening, construction, track, operator, availability, and installed scope.</p>
+        <div class="page-actions"><a class="btn btn-primary" href="#manufacturer-resources">Compare Dealer Brands ↓</a><a class="btn btn-outline" href="/contact">Request Product Help</a></div>
+      </div>
+      <aside class="brand-hero-guide" aria-label="How to use the brand and design tools page">
+        <p>How it works</p>
+        <a class="brand-guide-row" href="#manufacturer-resources"><span>01</span><div><strong>Browse the brands</strong><small>See the manufacturers and collections that fit your direction.</small></div><b>↓</b></a>
+        <a class="brand-guide-row" href="#manufacturer-resources"><span>02</span><div><strong>Build or save the design</strong><small>Use the official manufacturer tools before committing to a quote.</small></div><b>↓</b></a>
+        <a class="brand-guide-row" href="/contact"><span>03</span><div><strong>Send it to LIFTX</strong><small>We verify the product and everything required to install it correctly.</small></div><b>→</b></a>
+      </aside>
+    </div>
+  </div>
+  <div class="dealer-bridge" aria-label="LIFTX dealer brands">
+    <div class="dealer-bridge-inner">
+      <a class="dealer-bridge-card" href="/amarr-garage-doors-boise"><small>LIFTX Dealer Brand</small><span class="dealer-bridge-logo"><img src="assets/brands/amarr-logo.svg" alt="Amarr"></span><span>Explore →</span></a>
+      <a class="dealer-bridge-card" href="/clopay-garage-doors-boise"><small>LIFTX Dealer Brand</small><span class="dealer-bridge-logo"><img src="assets/brands/Clopay-GoldBar_RGB.png" alt="Clopay"></span><span>Explore →</span></a>
+      <a class="dealer-bridge-card" href="/wayne-dalton-garage-doors-boise"><small>LIFTX Dealer Brand</small><span class="dealer-bridge-logo">Wayne Dalton</span><span>Explore →</span></a>
     </div>
   </div>
 </section>
 
-<section class="section light">
+<section class="section light brands-resource-section" id="manufacturer-resources">
   <div class="content-shell">
     <div class="section-head">
       <p class="eyebrow">Manufacturer Resources</p>
-      <h2>Design online. Confirm with LIFTX.</h2>
+      <h2>Start with the dealer brands. Keep scrolling for more design resources.</h2>
       <p>Visualizers are planning tools, not physical samples. Screen colors, glass appearance, panel proportions, options, and availability can vary by product and door size.</p>
     </div>
     <div class="brand-grid">
