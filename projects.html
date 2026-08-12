@@ -22,9 +22,10 @@
 .before-after{--pos:50%;position:relative;height:290px;overflow:hidden;padding:0!important;background:#111;isolation:isolate}
 .before-after img{position:absolute;inset:0;width:100%;height:100%!important;object-fit:cover}
 .before-after .ba-after{clip-path:inset(0 0 0 var(--pos))}
-.before-after input{position:absolute;inset:0;z-index:6;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
+.before-after input{position:absolute;left:0;right:0;top:50%;z-index:6;width:100%;height:64px;margin:0;opacity:0;cursor:ew-resize;transform:translateY(-50%)}
 .ba-divider{position:absolute;z-index:5;top:0;bottom:0;left:var(--pos);width:2px;background:#0256AF;transform:translateX(-1px);pointer-events:none}
 .ba-divider:after{content:"↔";position:absolute;top:50%;left:50%;width:38px;height:38px;display:grid;place-items:center;transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%;background:#0256AF;color:#fff;font-size:18px;font-weight:900;box-shadow:0 4px 14px rgba(0,0,0,.24)}
+.before-after:focus-within .ba-divider:after{outline:3px solid #fff;outline-offset:3px}
 .ba-label{position:absolute;z-index:4;top:12px;padding:6px 9px;border-radius:999px;background:rgba(17,17,17,.78);color:#fff;font-size:.66rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;pointer-events:none}
 .ba-before{left:12px}.ba-after-label{right:12px}
 @media(max-width:760px){.before-after{height:260px}.ba-divider:after{width:36px;height:36px}}
