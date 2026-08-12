@@ -18,6 +18,17 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <link href="/site.css" rel="stylesheet"/>
+<style>
+.before-after{--pos:50%;position:relative;height:290px;overflow:hidden;padding:0!important;background:#111;isolation:isolate}
+.before-after img{position:absolute;inset:0;width:100%;height:100%!important;object-fit:cover}
+.before-after .ba-after{clip-path:inset(0 0 0 var(--pos))}
+.before-after input{position:absolute;inset:0;z-index:6;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
+.ba-divider{position:absolute;z-index:5;top:0;bottom:0;left:var(--pos);width:2px;background:#0256AF;transform:translateX(-1px);pointer-events:none}
+.ba-divider:after{content:"↔";position:absolute;top:50%;left:50%;width:38px;height:38px;display:grid;place-items:center;transform:translate(-50%,-50%);border:2px solid #fff;border-radius:50%;background:#0256AF;color:#fff;font-size:18px;font-weight:900;box-shadow:0 4px 14px rgba(0,0,0,.24)}
+.ba-label{position:absolute;z-index:4;top:12px;padding:6px 9px;border-radius:999px;background:rgba(17,17,17,.78);color:#fff;font-size:.66rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase;pointer-events:none}
+.ba-before{left:12px}.ba-after-label{right:12px}
+@media(max-width:760px){.before-after{height:260px}.ba-divider:after{width:36px;height:36px}}
+</style>
 </head><body>
 <header class="site-header">
 <div class="nav-shell">
@@ -91,7 +102,15 @@
 <div class="photo-grid">
 <article class="photo-card"><img alt="Black aluminum-and-glass full-view commercial overhead door installed by LIFTX" decoding="async" fetchpriority="low" height="800" loading="lazy" src="/assets/projects/commercial-full-view-glass-door-exterior-01.webp" width="600"/><div><small>Commercial Full-View</small><h3>Black Full-View Glass Door</h3><p>A completed aluminum-and-glass installation that adds natural light while keeping the opening clean and functional.</p></div></article>
 <article class="photo-card"><img alt="Completed full-view commercial door viewed from inside the building" height="1800" loading="lazy" src="/assets/projects/full-view-commercial-door-interior-02.webp" width="1350"/><div><small>Interior View</small><h3>Natural Light From Inside</h3><p>The finished system viewed from the work area, showing the impact of glass and black aluminum framing.</p></div></article>
-<article class="photo-card"><img alt="Finished white commercial sectional door with a row of windows" height="1800" loading="lazy" src="/assets/projects/commercial-sectional-door-windows-finished-01.webp" width="1350"/><div><small>Commercial Sectional</small><h3>Service-Bay Door</h3><p>A practical sectional system with vision windows for a commercial opening.</p><a href="/commercial">Explore commercial door service →</a></div></article>
+<article class="photo-card">
+<div class="before-after" style="--pos:50%">
+<img alt="Original white commercial sectional door before full-view replacement" decoding="async" fetchpriority="low" height="1800" loading="lazy" src="/assets/projects/commercial-sectional-door-windows-finished-01.webp" width="1350"/>
+<img class="ba-after" alt="Black aluminum-and-glass full-view commercial door after replacement" decoding="async" fetchpriority="low" height="1800" loading="lazy" src="/assets/projects/full-view-commercial-door-exterior-05.webp" width="1350"/>
+<span class="ba-label ba-before">Before</span><span class="ba-label ba-after-label">After</span><span class="ba-divider" aria-hidden="true"></span>
+<input aria-label="Drag to compare the original sectional door with the full-view replacement" min="0" max="100" value="50" type="range" oninput="this.parentElement.style.setProperty('--pos',this.value+'%')"/>
+</div>
+<div><small>Before &amp; After</small><h3>Sectional to Full-View Conversion</h3><p>Drag the divider to compare the original sectional door with the black aluminum-and-glass full-view replacement.</p><a href="/commercial">Explore commercial door service →</a></div>
+</article>
 <article class="photo-card"><img alt="Finished white sectional shop door viewed from the exterior" height="1800" loading="lazy" src="/assets/projects/shop-sectional-door-exterior-finished-01.webp" width="1350"/><div><small>Shop &amp; Barn</small><h3>Large Sectional Shop Door</h3><p>A completed sectional installation for a large shop opening.</p></div></article>
 <article class="photo-card"><img alt="Residential garage door operating after an off-track repair" height="1800" loading="lazy" src="/assets/projects/off-track-garage-door-after-01.webp" width="1350"/><div><small>Residential Repair</small><h3>Off-Track Door Restored</h3><p>The door after track, roller, cable, and hardware conditions were corrected.</p><a href="/garage-door-repair-boise">Garage door repair in Boise →</a></div></article>
 <article class="photo-card"><img alt="Matched pair of garage door torsion springs after replacement" height="1800" loading="lazy" src="/assets/projects/matched-torsion-springs-finished-01.webp" width="1350"/><div><small>Spring Repair</small><h3>Matched Torsion Spring Pair</h3><p>A completed paired-spring replacement followed by balance and full-system testing.</p><a href="/garage-door-repair-boise#broken-spring-repair">Broken spring repair details →</a></div></article>
