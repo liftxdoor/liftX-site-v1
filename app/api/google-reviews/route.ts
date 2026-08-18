@@ -12,6 +12,7 @@ type GoogleReview = {
 
 type GooglePlace = {
   displayName?: { text?: string };
+  googleMapsLinks?: { reviewsUri?: string };
   googleMapsUri?: string;
   rating?: number;
   reviews?: GoogleReview[];
@@ -20,6 +21,7 @@ type GooglePlace = {
 
 const fieldMask = [
   "displayName",
+  "googleMapsLinks.reviewsUri",
   "googleMapsUri",
   "rating",
   "reviews.authorAttribution",
@@ -38,7 +40,7 @@ function exactGoogleMapsUrl(placeId: string) {
 }
 
 function isExpectedPlace(displayName?: string) {
-  return !displayName || displayName.trim().toLowerCase().includes(expectedPlaceName);
+  return displayName?.trim().toLowerCase() === expectedPlaceName;
 }
 
 export async function GET() {
@@ -99,8 +101,8 @@ export async function GET() {
     return NextResponse.json(
       {
         configured: true,
-        mapsUrl: place.googleMapsUri ?? fallbackMapsUrl,
-        name: placeName ?? "LIFTX",
+        mapsUrl: place.googleMapsLinks?.reviewsUri ?? place.googleMapsUri ?? fallbackMapsUrl,
+        name: placeName,
         rating: place.rating,
         reviewCount: place.userRatingCount,
         reviews,
