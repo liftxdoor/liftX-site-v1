@@ -5,6 +5,7 @@ import { useState } from "react";
 import { TextChase } from "./ConversionCta";
 import { brandNavigation, primaryNavigation } from "./site-data";
 import { ArrowIcon, ChevronDownIcon } from "./UiIcons";
+import GoogleReviews from "./GoogleReviews";
 
 export default function SiteChrome({ children }: { children: React.ReactNode }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -74,6 +75,8 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
           <a href="tel:+12089954321">208-995-4321</a>
         </div>
       </div>
+
+      <GoogleReviews placement="interior" />
 
       {children}
 

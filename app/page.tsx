@@ -3,6 +3,7 @@
 
 import { useMemo, useState } from "react";
 import { DedicatedCta, TextChase } from "./ConversionCta";
+import GoogleReviews from "./GoogleReviews";
 import { ArrowIcon, DragHorizontalIcon } from "./UiIcons";
 
 type MediaCategory = "residential" | "commercial" | "service" | "process";
@@ -399,6 +400,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <GoogleReviews placement="home" />
 
       <section className="positioningSection" id="about">
         <div className="sectionLabel"><span>01</span>The LIFTX standard</div>
