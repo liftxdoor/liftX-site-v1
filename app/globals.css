@@ -1730,3 +1730,150 @@ footer { background: #0b0b0b; border-top: 1px solid #292929; color: var(--white)
   .mobileQuickBar a { align-items: center; border-right: 1px solid rgba(255, 255, 255, 0.28); color: var(--white); display: flex; font-size: 11px; font-weight: 720; justify-content: center; }
   .mobileQuickBar a:last-child { border-right: 0; }
 }
+
+/* Mobile is a purpose-built composition, not the desktop canvas stacked vertically. */
+@media (max-width: 600px) {
+  body { padding-bottom: 58px; }
+
+  .siteHeader,
+  .fullHeader {
+    height: 64px;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 60;
+  }
+  .brand,
+  .fullBrand { width: 108px; }
+  .menuTrigger img,
+  .fullMenuTrigger img { height: 24px; width: 31px; }
+  .menuTrigger,
+  .fullMenuTrigger { font-size: 7px; }
+  .mobileMenu,
+  .fullMobileMenu {
+    inset: 64px 0 0;
+    min-height: calc(100dvh - 64px);
+    overflow-y: auto;
+    position: fixed;
+  }
+  .mobileMenu { padding: 18px 20px 24px; }
+  .mobileMenu nav a { font-size: 24px; min-height: 52px; padding: 10px 0; }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .heroCopy { padding: 44px 20px 42px; }
+  .eyebrow { font-size: 9px; margin-bottom: 20px; }
+  .hero h1 {
+    font-size: clamp(39px, 11.5vw, 48px);
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+  }
+  .hero h1 em { margin-top: 7px; }
+  .heroIntro { font-size: 14px; line-height: 1.55; margin-top: 22px; }
+  .heroActions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .heroActions .primaryButton,
+  .heroActions .textLink {
+    align-items: center;
+    justify-content: space-between;
+    max-width: none;
+    min-height: 50px;
+    padding: 0 14px;
+    width: 100%;
+  }
+  .heroActions .textLink { border: 1px solid #555a60; }
+  .heroVisual { aspect-ratio: 4 / 4.15; min-height: 0; }
+  .heroVisual > img { object-position: 62% center; }
+  .heroMotion { display: none; }
+  .heroCaption { bottom: 14px; left: 14px; padding: 12px 14px; }
+  .heroRail {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-height: 64px;
+  }
+  .heroRail a {
+    align-content: center;
+    border-bottom: 0;
+    border-right: 1px solid #313131;
+    display: grid;
+    font-size: 9px;
+    gap: 4px;
+    grid-template-columns: 1fr auto;
+    line-height: 1.2;
+    min-height: 64px;
+    padding: 10px 9px;
+  }
+  .heroRail a span { grid-column: 1 / -1; }
+
+  .positioningSection,
+  .systemSelector,
+  .archiveSection,
+  .comparisonCopy,
+  .processContent { padding-top: 54px; }
+  .positioningSection { padding-inline: 20px; }
+  .positioningStatement { gap: 28px; margin-top: 28px; }
+  .positioningStatement h2,
+  .systemSelector > h2,
+  .comparisonCopy h2,
+  .processContent h2 { font-size: 36px; line-height: 1.02; }
+  .brandStrip { margin-top: 46px; }
+  .manufacturerBrand { min-height: 76px; }
+
+  .systemSelector { padding-bottom: 58px; }
+  .systemSelector > h2 { margin: 28px 0 32px; }
+  .selectorTabs button { flex-basis: 138px; }
+  .lanePanel { margin-top: 18px; }
+  .laneImage { aspect-ratio: 4 / 4.2; min-height: 0; }
+  .laneCopy { padding: 32px 22px 34px; }
+  .laneCopy h3 { font-size: 32px; }
+
+  .archiveSection { padding-bottom: 58px; }
+  .archiveHeading { gap: 20px; margin-top: 28px; }
+  .archiveHeading h2 { font-size: 40px; }
+  .archiveFilters { margin-top: 32px; }
+  .archiveStage { margin-top: 16px; }
+  .mediaOpen { aspect-ratio: 4 / 4.6; }
+  .archiveMeta { min-height: 168px; padding: 22px; }
+  .archiveMeta h3 { font-size: 27px; }
+  .thumbnailRail button { flex-basis: 76px; height: 96px; }
+
+  .comparisonCopy { padding-bottom: 44px; }
+  .comparisonCopy h2 { margin-top: 28px; }
+  .comparisonTool { aspect-ratio: 4 / 4.7; min-height: 0; }
+  .processImage { aspect-ratio: 4 / 4.8; min-height: 0; }
+  .processContent { padding-bottom: 58px; }
+  .processContent h2 { margin-top: 28px; }
+
+  .dedicatedCta { gap: 32px; padding: 54px 20px 62px; }
+  .dedicatedCtaLead h2 { font-size: 40px; }
+  footer,
+  .fullFooter { padding-bottom: 74px; }
+
+  .textChase,
+  .textChaseWithDesktopRail { display: none; }
+  .mobileContactBar,
+  .mobileQuickBar { min-height: 58px; }
+
+  .interiorHeroCopy { padding: 46px 20px 42px; }
+  .interiorHeroCopy h1 { font-size: 42px; line-height: 1; }
+  .interiorHeroImage { aspect-ratio: 4 / 4.3; min-height: 0; }
+  .inspectionImage,
+  .manufacturerHeroImage,
+  .cpowerVisual,
+  .fullViewHeroImage,
+  .fullViewStackImage { aspect-ratio: 4 / 4.5; min-height: 0; }
+  .brandsHero h1,
+  .projectsHero h1,
+  .faqHero h1,
+  .simpleBrandHero h1,
+  .contactIntro h1 { font-size: 46px; }
+  .projectsGrid { grid-template-columns: 1fr; }
+  .projectsGrid > button:nth-child(6n + 1) { grid-column: auto; }
+}
