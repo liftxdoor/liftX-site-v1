@@ -18,8 +18,6 @@ type ReviewFeed = {
   reviews: Review[];
 };
 
-const googleSearchUrl = "https://www.google.com/maps/search/?api=1&query=LIFTX+Garage+Doors+Boise+Idaho";
-
 function Stars({ rating = 5 }: { rating?: number }) {
   return <span className="googleReviewStars" aria-label={`${rating} out of 5 stars`}>{"★★★★★"}</span>;
 }
@@ -36,7 +34,7 @@ export default function GoogleReviews({ placement = "interior" }: { placement?: 
     return () => controller.abort();
   }, []);
 
-  const mapsUrl = feed.mapsUrl || googleSearchUrl;
+  const mapsUrl = feed.mapsUrl;
   const hasReviews = feed.reviews.length > 0;
 
   return (
@@ -58,9 +56,11 @@ export default function GoogleReviews({ placement = "interior" }: { placement?: 
             </div>
           )}
         </div>
-        <a href={mapsUrl} target="_blank" rel="noreferrer">
-          {hasReviews ? "See all reviews" : "View on Google"} <ArrowIcon direction="up-right" />
-        </a>
+        {mapsUrl ? (
+          <a href={mapsUrl} target="_blank" rel="noreferrer">
+            {hasReviews ? "See all reviews" : "View on Google"} <ArrowIcon direction="up-right" />
+          </a>
+        ) : null}
       </div>
 
       {hasReviews && (
