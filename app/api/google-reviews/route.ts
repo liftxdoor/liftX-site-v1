@@ -30,13 +30,33 @@ const fieldMask = [
   "userRatingCount",
 ].join(",");
 
+const expectedPlaceName = "liftx door systems";
+
+function exactGoogleMapsUrl(placeId: string) {
+  const query = encodeURIComponent("LIFTX Door Systems, Eagle, Idaho");
+  return `https://www.google.com/maps/search/?api=1&query=${query}&query_place_id=${encodeURIComponent(placeId)}`;
+}
+
+function isExpectedPlace(displayName?: string) {
+  return !displayName || displayName.trim().toLowerCase().includes(expectedPlaceName);
+}
+
 export async function GET() {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   const placeId = process.env.GOOGLE_PLACE_ID;
 
-  if (!apiKey || !placeId) {
+  if (!placeId) {
     return NextResponse.json(
       { configured: false, reviews: [] },
+      { headers: { "Cache-Control": "public, max-age=300" } },
+    );
+  }
+
+  const fallbackMapsUrl = exactGoogleMapsUrl(placeId);
+
+  if (!apiKey) {
+    return NextResponse.json(
+      { configured: false, mapsUrl: fallbackMapsUrl, reviews: [] },
       { headers: { "Cache-Control": "public, max-age=300" } },
     );
   }
@@ -54,12 +74,21 @@ export async function GET() {
 
     if (!response.ok) {
       return NextResponse.json(
-        { configured: true, reviews: [], unavailable: true },
-        { status: 502, headers: { "Cache-Control": "no-store" } },
+        { configured: true, mapsUrl: fallbackMapsUrl, reviews: [], unavailable: true },
+        { headers: { "Cache-Control": "no-store" } },
       );
     }
 
     const place = (await response.json()) as GooglePlace;
+    const placeName = place.displayName?.text;
+
+    if (!isExpectedPlace(placeName)) {
+      return NextResponse.json(
+        { configured: true, reviews: [], unavailable: true, configurationError: "place_id_mismatch" },
+        { headers: { "Cache-Control": "no-store" } },
+      );
+    }
+
     const reviews = (place.reviews ?? []).slice(0, 5).map((review) => ({
       author: review.authorAttribution?.displayName ?? "Google customer",
       date: review.relativePublishTimeDescription ?? review.publishTime ?? "",
@@ -70,8 +99,8 @@ export async function GET() {
     return NextResponse.json(
       {
         configured: true,
-        mapsUrl: place.googleMapsUri,
-        name: place.displayName?.text ?? "LIFTX",
+        mapsUrl: place.googleMapsUri ?? fallbackMapsUrl,
+        name: placeName ?? "LIFTX",
         rating: place.rating,
         reviewCount: place.userRatingCount,
         reviews,
@@ -84,8 +113,8 @@ export async function GET() {
     );
   } catch {
     return NextResponse.json(
-      { configured: true, reviews: [], unavailable: true },
-      { status: 502, headers: { "Cache-Control": "no-store" } },
+      { configured: true, mapsUrl: fallbackMapsUrl, reviews: [], unavailable: true },
+      { headers: { "Cache-Control": "no-store" } },
     );
   }
 }
