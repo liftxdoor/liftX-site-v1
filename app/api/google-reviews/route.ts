@@ -11,7 +11,9 @@ type GoogleReview = {
 };
 
 type GooglePlace = {
+  id?: string;
   displayName?: { text?: string };
+  formattedAddress?: string;
   googleMapsLinks?: { reviewsUri?: string };
   googleMapsUri?: string;
   rating?: number;
@@ -19,8 +21,14 @@ type GooglePlace = {
   userRatingCount?: number;
 };
 
-const fieldMask = [
+type GoogleTextSearchResponse = {
+  places?: GooglePlace[];
+};
+
+const detailsFieldMask = [
+  "id",
   "displayName",
+  "formattedAddress",
   "googleMapsLinks.reviewsUri",
   "googleMapsUri",
   "rating",
@@ -33,6 +41,7 @@ const fieldMask = [
 ].join(",");
 
 const expectedPlaceName = "liftx door systems";
+const placeSearchQuery = "LIFTX Door Systems Eagle Idaho";
 
 function exactGoogleMapsUrl(placeId: string) {
   const query = encodeURIComponent("LIFTX Door Systems, Eagle, Idaho");
@@ -43,50 +52,99 @@ function isExpectedPlace(displayName?: string) {
   return displayName?.trim().toLowerCase() === expectedPlaceName;
 }
 
+async function discoverPlaceId(apiKey: string) {
+  const response = await fetch("https://places.googleapis.com/v1/places:searchText", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Goog-Api-Key": apiKey,
+      "X-Goog-FieldMask": "places.id,places.displayName,places.formattedAddress",
+    },
+    body: JSON.stringify({
+      textQuery: placeSearchQuery,
+      includePureServiceAreaBusinesses: true,
+      pageSize: 5,
+    }),
+  });
+
+  if (!response.ok) return null;
+
+  const result = (await response.json()) as GoogleTextSearchResponse;
+  const exactMatch = (result.places ?? []).find((place) => isExpectedPlace(place.displayName?.text));
+  return exactMatch?.id ?? null;
+}
+
+async function fetchPlaceDetails(apiKey: string, placeId: string) {
+  const response = await fetch(
+    `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`,
+    {
+      headers: {
+        "X-Goog-Api-Key": apiKey,
+        "X-Goog-FieldMask": detailsFieldMask,
+      },
+    },
+  );
+
+  if (!response.ok) return null;
+  return (await response.json()) as GooglePlace;
+}
+
 export async function GET() {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-  const placeId = process.env.GOOGLE_PLACE_ID;
-
-  if (!placeId) {
-    return NextResponse.json(
-      { configured: false, reviews: [] },
-      { headers: { "Cache-Control": "public, max-age=300" } },
-    );
-  }
-
-  const fallbackMapsUrl = exactGoogleMapsUrl(placeId);
 
   if (!apiKey) {
     return NextResponse.json(
-      { configured: false, mapsUrl: fallbackMapsUrl, reviews: [] },
+      {
+        configured: false,
+        reviews: [],
+        configurationError: "missing_api_key",
+      },
       { headers: { "Cache-Control": "public, max-age=300" } },
     );
   }
 
   try {
-    const response = await fetch(
-      `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`,
-      {
-        headers: {
-          "X-Goog-Api-Key": apiKey,
-          "X-Goog-FieldMask": fieldMask,
-        },
-      },
-    );
+    const configuredPlaceId = process.env.GOOGLE_PLACE_ID?.trim();
+    const placeId = configuredPlaceId || (await discoverPlaceId(apiKey));
 
-    if (!response.ok) {
+    if (!placeId) {
       return NextResponse.json(
-        { configured: true, mapsUrl: fallbackMapsUrl, reviews: [], unavailable: true },
+        {
+          configured: true,
+          reviews: [],
+          unavailable: true,
+          configurationError: "place_not_found",
+        },
         { headers: { "Cache-Control": "no-store" } },
       );
     }
 
-    const place = (await response.json()) as GooglePlace;
+    const fallbackMapsUrl = exactGoogleMapsUrl(placeId);
+    const place = await fetchPlaceDetails(apiKey, placeId);
+
+    if (!place) {
+      return NextResponse.json(
+        {
+          configured: true,
+          mapsUrl: fallbackMapsUrl,
+          reviews: [],
+          unavailable: true,
+          configurationError: "places_api_error",
+        },
+        { headers: { "Cache-Control": "no-store" } },
+      );
+    }
+
     const placeName = place.displayName?.text;
 
     if (!isExpectedPlace(placeName)) {
       return NextResponse.json(
-        { configured: true, reviews: [], unavailable: true, configurationError: "place_id_mismatch" },
+        {
+          configured: true,
+          reviews: [],
+          unavailable: true,
+          configurationError: "place_id_mismatch",
+        },
         { headers: { "Cache-Control": "no-store" } },
       );
     }
@@ -101,6 +159,7 @@ export async function GET() {
     return NextResponse.json(
       {
         configured: true,
+        placeId,
         mapsUrl: place.googleMapsLinks?.reviewsUri ?? place.googleMapsUri ?? fallbackMapsUrl,
         name: placeName,
         rating: place.rating,
@@ -115,7 +174,12 @@ export async function GET() {
     );
   } catch {
     return NextResponse.json(
-      { configured: true, mapsUrl: fallbackMapsUrl, reviews: [], unavailable: true },
+      {
+        configured: true,
+        reviews: [],
+        unavailable: true,
+        configurationError: "unexpected_error",
+      },
       { headers: { "Cache-Control": "no-store" } },
     );
   }
