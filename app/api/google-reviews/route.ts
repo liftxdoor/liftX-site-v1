@@ -11,25 +11,15 @@ type GoogleReview = {
 };
 
 type GooglePlace = {
-  id?: string;
   displayName?: { text?: string };
-  formattedAddress?: string;
-  googleMapsLinks?: { reviewsUri?: string };
   googleMapsUri?: string;
   rating?: number;
   reviews?: GoogleReview[];
   userRatingCount?: number;
 };
 
-type GoogleTextSearchResponse = {
-  places?: GooglePlace[];
-};
-
-const detailsFieldMask = [
-  "id",
+const fieldMask = [
   "displayName",
-  "formattedAddress",
-  "googleMapsLinks.reviewsUri",
   "googleMapsUri",
   "rating",
   "reviews.authorAttribution",
@@ -40,115 +30,50 @@ const detailsFieldMask = [
   "userRatingCount",
 ].join(",");
 
-const expectedPlaceName = "liftx door systems";
-const placeSearchQuery = "LIFTX Door Systems Eagle Idaho";
-
-function exactGoogleMapsUrl(placeId: string) {
-  const query = encodeURIComponent("LIFTX Door Systems, Eagle, Idaho");
-  return `https://www.google.com/maps/search/?api=1&query=${query}&query_place_id=${encodeURIComponent(placeId)}`;
-}
-
-function isExpectedPlace(displayName?: string) {
-  return displayName?.trim().toLowerCase() === expectedPlaceName;
-}
-
-async function discoverPlaceId(apiKey: string) {
-  const response = await fetch("https://places.googleapis.com/v1/places:searchText", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Goog-Api-Key": apiKey,
-      "X-Goog-FieldMask": "places.id,places.displayName,places.formattedAddress",
-    },
-    body: JSON.stringify({
-      textQuery: placeSearchQuery,
-      includePureServiceAreaBusinesses: true,
-      pageSize: 5,
-    }),
-  });
-
-  if (!response.ok) return null;
-
-  const result = (await response.json()) as GoogleTextSearchResponse;
-  const exactMatch = (result.places ?? []).find((place) => isExpectedPlace(place.displayName?.text));
-  return exactMatch?.id ?? null;
-}
-
-async function fetchPlaceDetails(apiKey: string, placeId: string) {
-  const response = await fetch(
-    `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`,
-    {
-      headers: {
-        "X-Goog-Api-Key": apiKey,
-        "X-Goog-FieldMask": detailsFieldMask,
-      },
-    },
-  );
-
-  if (!response.ok) return null;
-  return (await response.json()) as GooglePlace;
-}
+const fallbackMapsUrl = "https://share.google/tVgk2hRaH6mbMb7kX";
 
 export async function GET() {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+  const placeId = process.env.GOOGLE_PLACE_ID;
+  const directMapsUrl = placeId
+    ? `https://www.google.com/maps/place/?q=place_id:${encodeURIComponent(placeId)}`
+    : undefined;
 
+  if (!placeId) {
+    return NextResponse.json(
+      { configured: false, mapsUrl: fallbackMapsUrl, reviews: [] },
+      { headers: { "Cache-Control": "public, max-age=300" } },
+    );
+  }
+
+  // A Place ID is enough to create an exact business-profile destination.
+  // Keep the CTA useful even before the Places API key is configured.
   if (!apiKey) {
     return NextResponse.json(
-      {
-        configured: false,
-        reviews: [],
-        configurationError: "missing_api_key",
-      },
+      { configured: false, mapsUrl: directMapsUrl, reviews: [] },
       { headers: { "Cache-Control": "public, max-age=300" } },
     );
   }
 
   try {
-    const configuredPlaceId = process.env.GOOGLE_PLACE_ID?.trim();
-    const placeId = configuredPlaceId || (await discoverPlaceId(apiKey));
-
-    if (!placeId) {
-      return NextResponse.json(
-        {
-          configured: true,
-          reviews: [],
-          unavailable: true,
-          configurationError: "place_not_found",
+    const response = await fetch(
+      `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}`,
+      {
+        headers: {
+          "X-Goog-Api-Key": apiKey,
+          "X-Goog-FieldMask": fieldMask,
         },
-        { headers: { "Cache-Control": "no-store" } },
+      },
+    );
+
+    if (!response.ok) {
+      return NextResponse.json(
+        { configured: true, mapsUrl: directMapsUrl, reviews: [], unavailable: true },
+        { status: 502, headers: { "Cache-Control": "no-store" } },
       );
     }
 
-    const fallbackMapsUrl = exactGoogleMapsUrl(placeId);
-    const place = await fetchPlaceDetails(apiKey, placeId);
-
-    if (!place) {
-      return NextResponse.json(
-        {
-          configured: true,
-          mapsUrl: fallbackMapsUrl,
-          reviews: [],
-          unavailable: true,
-          configurationError: "places_api_error",
-        },
-        { headers: { "Cache-Control": "no-store" } },
-      );
-    }
-
-    const placeName = place.displayName?.text;
-
-    if (!isExpectedPlace(placeName)) {
-      return NextResponse.json(
-        {
-          configured: true,
-          reviews: [],
-          unavailable: true,
-          configurationError: "place_id_mismatch",
-        },
-        { headers: { "Cache-Control": "no-store" } },
-      );
-    }
-
+    const place = (await response.json()) as GooglePlace;
     const reviews = (place.reviews ?? []).slice(0, 5).map((review) => ({
       author: review.authorAttribution?.displayName ?? "Google customer",
       date: review.relativePublishTimeDescription ?? review.publishTime ?? "",
@@ -159,9 +84,8 @@ export async function GET() {
     return NextResponse.json(
       {
         configured: true,
-        placeId,
-        mapsUrl: place.googleMapsLinks?.reviewsUri ?? place.googleMapsUri ?? fallbackMapsUrl,
-        name: placeName,
+        mapsUrl: place.googleMapsUri ?? directMapsUrl,
+        name: place.displayName?.text ?? "LiftX Door Systems",
         rating: place.rating,
         reviewCount: place.userRatingCount,
         reviews,
@@ -174,13 +98,8 @@ export async function GET() {
     );
   } catch {
     return NextResponse.json(
-      {
-        configured: true,
-        reviews: [],
-        unavailable: true,
-        configurationError: "unexpected_error",
-      },
-      { headers: { "Cache-Control": "no-store" } },
+      { configured: true, mapsUrl: directMapsUrl, reviews: [], unavailable: true },
+      { status: 502, headers: { "Cache-Control": "no-store" } },
     );
   }
 }

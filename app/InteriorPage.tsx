@@ -1,9 +1,10 @@
 /* eslint-disable @next/next/no-html-link-for-pages, @next/next/no-img-element */
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useMemo, useRef, useState } from "react";
 import BrandJourney from "./BrandJourney";
 import { DedicatedCta } from "./ConversionCta";
+import HomeFlipperReveal from "./HomeFlipperReveal";
 import SiteChrome from "./SiteChrome";
 import { ArrowIcon } from "./UiIcons";
 import {
@@ -70,6 +71,8 @@ function GenericPage({ slug }: { slug: string }) {
         </div>
         {page.note && <aside className="interiorNote"><strong>Important</strong><p>{page.note}</p></aside>}
       </section>
+
+      {slug === "builders-contractors" && <HomeFlipperReveal />}
 
       {slug === "commercial" && (
         <section className="commercialFullViewGateway">
@@ -156,7 +159,7 @@ const fullViewSystems = [
     copy: "Large glass areas, multiple anodized or coated frame finishes, and broad glazing choices for modern residential and mixed-use spaces.",
     best: "Best for flexible frame-and-glass design combinations.",
     travel: "Overhead travel",
-    href: "https://www.amarr.com/us/en/garage-doors/explore-products/view-all-doors/vista",
+    href: "https://www.amarr.com/us/en/garage-doors",
   },
   {
     brand: "Amarr",
@@ -179,14 +182,14 @@ const fullViewSystems = [
     href: "https://www.garaga.com/garage-doors/residential/california",
   },
   {
-    brand: "Wayne Dalton",
-    name: "Model 8850",
-    type: "Modern aluminum + glass",
+    brand: "Amarr",
+    name: "Installed Full-View",
+    type: "Real LIFTX installation",
     image: "/images/white-full-view-residential.jpeg",
-    copy: "Straight-line aluminum framing with anodized, painted, and powder-coated finish directions plus clear, tinted, obscure, satin, or laminated glass.",
-    best: "Best for a broad finish and privacy palette.",
+    copy: "An Amarr aluminum-and-glass system installed by LIFTX. The exact model is intentionally not identified from appearance alone.",
+    best: "Shown as installation proof, not as a model-identification claim.",
     travel: "Overhead travel",
-    href: "https://www.wayne-dalton.com/garage-doors/detail/glass-garage-doors-8850",
+    href: "https://www.amarr.com/us/en/garage-doors/explore-products/view-all-doors/vista",
   },
 ];
 
@@ -525,10 +528,12 @@ function WayneDaltonPage() {
 }
 
 function ProjectsPage() {
-  const filters = ["All", "Residential", "Commercial", "Behind the build", "Service"];
-  const [filter, setFilter] = useState("All");
   const [selected, setSelected] = useState<number | null>(null);
-  const visible = filter === "All" ? projectMedia : projectMedia.filter((item) => item.type === filter);
+  const railRef = useRef<HTMLDivElement>(null);
+
+  const moveProjects = (direction: -1 | 1) => {
+    railRef.current?.scrollBy({ left: direction * railRef.current.clientWidth * 0.82, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -538,35 +543,28 @@ function ProjectsPage() {
         <p>Finished systems, repairs, failures, jobsite details, and the work between them—every photo and video from the current LIFTX project library.</p>
       </section>
       <section className="projectsArchive">
-        <div className="projectsFilters" role="tablist" aria-label="Filter project archive">
-          {filters.map((item) => (
-            <button key={item} type="button" role="tab" aria-selected={filter === item} onClick={() => setFilter(item)}>
-              {item}<span>{String(item === "All" ? projectMedia.length : projectMedia.filter((media) => media.type === item).length).padStart(2, "0")}</span>
-            </button>
-          ))}
+        <div className="projectsRailHeader">
+          <div><span>SELECTED WORK</span><strong>One clear view of each project.</strong></div>
+          <div className="projectsRailControls" aria-label="Project gallery controls">
+            <button type="button" aria-label="Previous projects" onClick={() => moveProjects(-1)}><ArrowIcon direction="left" /></button>
+            <button type="button" aria-label="Next projects" onClick={() => moveProjects(1)}><ArrowIcon direction="right" /></button>
+          </div>
         </div>
-        <div className="projectsGrid">
-          <button className="projectVideo" type="button" onClick={() => setSelected(-1)}>
-            <video src="/gallery/amarr-northwoods-onyx-finished-01.mp4" poster="/gallery/amarr-northwoods-onyx-finished-01-poster.webp" autoPlay muted loop playsInline />
-            <span><b>VIDEO</b> Northwoods Onyx in motion</span>
-          </button>
-          {visible.map((item, index) => (
+        <div className="projectsRail" ref={railRef}>
+          {projectMedia.map((item, index) => (
             <button key={`${item.src}-${index}`} type="button" onClick={() => setSelected(index)}>
               <img src={item.src} alt={`${item.title} by LIFTX`} loading="lazy" />
-              <span><b>{item.type}</b>{item.title}</span>
+              <span><b>{String(index + 1).padStart(2, "0")} · {item.type}</b>{item.title}</span>
             </button>
           ))}
         </div>
+        <p className="projectsSwipeCue">Swipe or scroll to explore</p>
       </section>
       <PageCta title="Have an opening like one of these?" copy="Send the project image, your opening, and what you want the system to do." />
       {selected !== null && (
         <div className="projectLightbox" role="dialog" aria-modal="true" onClick={() => setSelected(null)}>
           <button type="button" onClick={() => setSelected(null)}>CLOSE ×</button>
-          {selected === -1 ? (
-            <video src="/gallery/amarr-northwoods-onyx-finished-01.mp4" controls autoPlay playsInline onClick={(event) => event.stopPropagation()} />
-          ) : (
-            <img src={visible[selected]?.src} alt={visible[selected]?.title ?? "LIFTX project"} onClick={(event) => event.stopPropagation()} />
-          )}
+          <img src={projectMedia[selected]?.src} alt={projectMedia[selected]?.title ?? "LIFTX project"} onClick={(event) => event.stopPropagation()} />
         </div>
       )}
     </>

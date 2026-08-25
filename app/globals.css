@@ -149,16 +149,16 @@ img, video { display: block; }
 
 .googleMark {
   align-items: center;
-  background: conic-gradient(from -45deg, #4285f4, #34a853, #fbbc05, #ea4335, #4285f4);
+  background: var(--white);
+  border: 1px solid #dadce0;
   border-radius: 50%;
-  color: var(--white);
   display: flex;
-  font-size: 21px;
-  font-weight: 760;
   height: 42px;
   justify-content: center;
   width: 42px;
 }
+
+.googleLogo { display: block; height: 24px; width: 24px; }
 
 .googleReviewsSummary p {
   color: #6d7379;
@@ -1445,6 +1445,21 @@ footer { background: #0b0b0b; border-top: 1px solid #292929; color: var(--white)
 .simpleBrandHero .interiorHeroActions { color: var(--white); }
 
 .projectsArchive { background: var(--paper); padding: 0 clamp(20px, 4vw, 68px) 120px; }
+.projectsRailHeader { align-items: end; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; padding: 28px 0 24px; }
+.projectsRailHeader > div:first-child { display: flex; flex-direction: column; gap: 8px; }
+.projectsRailHeader span { color: var(--blue); font-size: 8px; font-weight: 780; letter-spacing: 0.15em; }
+.projectsRailHeader strong { font-size: clamp(22px, 2.1vw, 34px); font-weight: 580; letter-spacing: -0.035em; }
+.projectsRailControls { display: flex; gap: 8px; }
+.projectsRailControls button { align-items: center; background: var(--white); border: 1px solid var(--line); border-radius: 50%; color: var(--ink); cursor: pointer; display: flex; height: 46px; justify-content: center; width: 46px; }
+.projectsRailControls .uiIcon { height: 17px; width: 17px; }
+.projectsRail { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-inline: contain; padding: 12px 0 10px; scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.projectsRail::-webkit-scrollbar { display: none; }
+.projectsRail > button { aspect-ratio: 4 / 5; background: var(--ink); border: 0; cursor: zoom-in; flex: 0 0 clamp(280px, 39vw, 560px); overflow: hidden; padding: 0; position: relative; scroll-snap-align: start; }
+.projectsRail img { height: 100%; object-fit: cover; transition: transform 600ms ease, opacity 250ms ease; width: 100%; }
+.projectsRail button:hover img { opacity: 0.9; transform: scale(1.018); }
+.projectsRail button > span { align-items: start; background: linear-gradient(transparent, rgba(17, 17, 17, 0.94)); bottom: 0; color: var(--white); display: flex; flex-direction: column; font-size: 18px; gap: 7px; left: 0; padding: 80px 22px 22px; position: absolute; right: 0; text-align: left; }
+.projectsRail button > span b { color: #c7cbd0; font-size: 8px; letter-spacing: 0.14em; text-transform: uppercase; }
+.projectsSwipeCue { color: #858b92; font-size: 8px; font-weight: 720; letter-spacing: 0.14em; margin: 8px 0 0; text-align: right; text-transform: uppercase; }
 .projectsFilters { background: var(--white); border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(5, 1fr); position: sticky; top: 0; z-index: 10; }
 .projectsFilters button { background: transparent; border: 0; border-bottom: 2px solid transparent; color: #71777d; cursor: pointer; display: flex; font-size: 10px; font-weight: 680; justify-content: space-between; min-height: 64px; padding: 0 18px; }
 .projectsFilters button + button { border-left: 1px solid var(--line); }
@@ -1626,7 +1641,8 @@ footer { background: #0b0b0b; border-top: 1px solid #292929; color: var(--white)
 @media (max-width: 600px) {
   .googleReviews { padding: 18px 20px; }
   .googleReviewsSummary { gap: 12px; grid-template-columns: 36px minmax(0, 1fr); }
-  .googleMark { font-size: 18px; height: 36px; width: 36px; }
+  .googleMark { height: 36px; width: 36px; }
+  .googleLogo { height: 21px; width: 21px; }
   .googleRatingLine { gap: 7px; }
   .googleRatingLine strong { font-size: 20px; }
   .googleRatingLine > span:last-child { flex-basis: 100%; }
@@ -1722,6 +1738,12 @@ footer { background: #0b0b0b; border-top: 1px solid #292929; color: var(--white)
   .additionalBrandGrid { margin-top: 48px; }
   .additionalBrandGrid article { min-height: 310px; padding: 24px 22px 26px; }
   .projectsArchive { padding: 0 8px 72px; }
+  .projectsRailHeader { align-items: center; padding: 22px 12px 18px; }
+  .projectsRailControls { display: none; }
+  .projectsRail { gap: 8px; padding-left: 12px; padding-right: 12px; }
+  .projectsRail > button { flex-basis: 82vw; }
+  .projectsRail button > span { font-size: 16px; padding: 64px 18px 18px; }
+  .projectsSwipeCue { padding-right: 12px; }
   .projectsFilters { display: flex; overflow-x: auto; position: static; }
   .projectsFilters button { flex: 0 0 145px; }
   .projectsGrid { grid-template-columns: 1fr 1fr; gap: 4px; padding-top: 4px; }
@@ -1951,4 +1973,59 @@ footer { background: #0b0b0b; border-top: 1px solid #292929; color: var(--white)
   .contactIntro h1 { font-size: 46px; }
   .projectsGrid { grid-template-columns: 1fr; }
   .projectsGrid > button:nth-child(6n + 1) { grid-column: auto; }
+}
+.homeFlipperReveal {
+  background: #111111;
+  color: #ffffff;
+  min-height: 180vh;
+  position: relative;
+}
+
+.homeFlipperSticky {
+  align-items: center;
+  display: grid;
+  gap: clamp(40px, 6vw, 88px);
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+  margin: 0 auto;
+  max-width: 1440px;
+  min-height: 100vh;
+  padding: 96px clamp(24px, 5vw, 80px);
+  position: sticky;
+  top: 0;
+}
+
+.homeFlipperCopy { max-width: 470px; }
+.homeFlipperCopy .interiorEyebrow { color: #ffffff; }
+.homeFlipperCopy h2 { font-size: clamp(38px, 4.6vw, 72px); letter-spacing: -0.045em; line-height: 0.98; margin: 24px 0; }
+.homeFlipperCopy > p { color: #c7cbd1; font-size: clamp(16px, 1.25vw, 20px); line-height: 1.55; }
+.homeFlipperStatus { align-items: center; display: grid; font-size: 11px; font-weight: 760; gap: 12px; grid-template-columns: auto 1fr auto; letter-spacing: 0.14em; margin-top: 38px; text-transform: uppercase; }
+.homeFlipperStatus span { color: #777d86; transition: color 240ms ease; }
+.homeFlipperStatus span.active { color: #ffffff; }
+.homeFlipperStatus i { background: #333840; display: block; height: 2px; overflow: hidden; }
+.homeFlipperStatus b { background: #0256af; display: block; height: 100%; transition: width 80ms linear; }
+
+.homeFlipperStage { min-width: 0; }
+.homeFlipperFrame { aspect-ratio: 4 / 3; background: #222; border-radius: 18px; box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38); margin: 0; overflow: hidden; position: relative; }
+.homeFlipperFrame img { height: 100%; inset: 0; object-fit: cover; position: absolute; width: 100%; }
+.homeFlipperBefore { object-position: 50% 44%; }
+.homeFlipperAfter { object-position: 50% 50%; transition: opacity 80ms linear; }
+.homeFlipperFrame figcaption { background: rgba(17, 17, 17, 0.88); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 999px; bottom: 18px; color: #ffffff; font-size: 10px; font-weight: 800; left: 18px; letter-spacing: 0.16em; padding: 10px 13px; position: absolute; }
+.homeFlipperFrame figcaption.after { background: #0256af; border-color: #0256af; }
+.homeFlipperHint { color: #949aa3; font-size: 10px; font-weight: 720; letter-spacing: 0.14em; margin: 14px 0 0; text-align: right; text-transform: uppercase; }
+
+@media (max-width: 760px) {
+  .homeFlipperReveal { min-height: 165vh; }
+  .homeFlipperSticky { align-content: center; display: flex; flex-direction: column; gap: 28px; justify-content: center; min-height: 100svh; padding: 56px 20px 76px; }
+  .homeFlipperCopy { max-width: none; width: 100%; }
+  .homeFlipperCopy h2 { font-size: clamp(34px, 10vw, 48px); margin: 18px 0 16px; }
+  .homeFlipperCopy > p { font-size: 15px; }
+  .homeFlipperStatus { margin-top: 22px; }
+  .homeFlipperStage { width: 100%; }
+  .homeFlipperFrame { aspect-ratio: 4 / 3; border-radius: 12px; }
+  .homeFlipperHint { margin-top: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homeFlipperAfter { transition: none; }
+  .homeFlipperStatus b { transition: none; }
 }
