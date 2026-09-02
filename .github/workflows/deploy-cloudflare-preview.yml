@@ -8,11 +8,13 @@ permissions:
 
 jobs:
   deploy-preview:
-    name: Deploy main to liftx-site-v2
+    name: Deploy 4d87efb to liftx-site-v2
     runs-on: ubuntu-latest
     steps:
-      - name: Check out main
+      - name: Check out verified production source
         uses: actions/checkout@v4
+        with:
+          ref: 4d87efb3cc3d412ae6c0a151f7f75ed4772dc6f5
 
       - name: Deploy to Cloudflare Workers preview
         uses: cloudflare/wrangler-action@v3
