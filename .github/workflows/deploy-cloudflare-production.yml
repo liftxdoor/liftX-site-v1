@@ -1,20 +1,28 @@
 name: Deploy LIFTX Cloudflare Production
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: liftx-cloudflare-production
+  cancel-in-progress: true
+
 jobs:
   deploy-production:
-    name: Deploy 4d87efb to liftx-site-v1
+    name: Deploy main to liftx-site-v1
     runs-on: ubuntu-latest
     steps:
-      - name: Check out verified production source
+      - name: Check out production branch commit
         uses: actions/checkout@v4
-        with:
-          ref: 4d87efb3cc3d412ae6c0a151f7f75ed4772dc6f5
+
+      - name: Record deployed GitHub commit
+        run: git log -1 --format=%H
 
       - name: Deploy to existing Cloudflare production Worker
         run: npx --yes wrangler@4.128.0 deploy --name liftx-site-v1
