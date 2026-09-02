@@ -4,7 +4,7 @@
 
   const summary = document.getElementById('google-review-summary');
   const viewAllLinks = document.querySelectorAll('[data-google-reviews-link]');
-  const fallbackUrl = 'https://www.google.com/maps/search/?api=1&query=LiftX%20Door%20Systems%20Eagle%20ID';
+  const fallbackUrl = 'https://maps.app.goo.gl/9c6jKwTTh9rvFSHY9';
 
   const safeGoogleUrl = (url, fallback = fallbackUrl) => {
     if (typeof url !== 'string') return fallback;
