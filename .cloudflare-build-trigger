@@ -1,0 +1,3 @@
+Restored production static site for liftxdoor.com.
+Source baseline: 3ecd946e83633ef8c409e3faf2f2d11476095b5d
+Cloudflare should deploy this repository root using wrangler.jsonc.
