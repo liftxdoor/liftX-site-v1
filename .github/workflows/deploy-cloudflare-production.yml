@@ -1,0 +1,23 @@
+name: Deploy LIFTX Cloudflare Production
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-production:
+    name: Deploy 4d87efb to liftx-site-v1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out verified production source
+        uses: actions/checkout@v4
+        with:
+          ref: 4d87efb3cc3d412ae6c0a151f7f75ed4772dc6f5
+
+      - name: Deploy to existing Cloudflare production Worker
+        run: npx --yes wrangler@4.128.0 deploy --name liftx-site-v1
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
