@@ -18,6 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
 <link rel="stylesheet" href="brands.css">
+<link rel="stylesheet" href="visualizer.css">
 <style>
 .brand-landing-hero{overflow:visible;background:#0b0d10}
 .brand-landing-hero .page-hero-inner{min-height:520px}
@@ -106,13 +107,13 @@
         <p class="eyebrow">Brands & Design Tools</p>
         <h1>Find the door you actually want.</h1>
         <p>Start with the manufacturer, style, and official design tools. When something catches your eye, LIFTX verifies the exact product, opening, construction, track, operator, availability, and installed scope.</p>
-        <div class="page-actions"><a class="btn btn-primary" href="#manufacturer-resources">Compare Dealer Brands ↓</a><a class="btn btn-outline" href="/contact">Request Product Help</a></div>
+        <div class="page-actions"><a class="btn btn-primary" href="#ai-visualizer">Try the AI Visualizer ↓</a><a class="btn btn-outline" href="#manufacturer-resources">Compare Dealer Brands</a></div>
       </div>
       <aside class="brand-hero-guide" aria-label="How to use the brand and design tools page">
         <p>How it works</p>
-        <a class="brand-guide-row" href="#manufacturer-resources"><span>01</span><div><strong>Browse the brands</strong><small>See the manufacturers and collections that fit your direction.</small></div><b>↓</b></a>
-        <a class="brand-guide-row" href="#manufacturer-resources"><span>02</span><div><strong>Build or save the design</strong><small>Use the official manufacturer tools before committing to a quote.</small></div><b>↓</b></a>
-        <a class="brand-guide-row" href="/contact"><span>03</span><div><strong>Send it to LIFTX</strong><small>We verify the product and everything required to install it correctly.</small></div><b>→</b></a>
+        <a class="brand-guide-row" href="#ai-visualizer"><span>01</span><div><strong>Upload your garage</strong><small>Use a clear, straight-on photo of the opening and surrounding home.</small></div><b>↓</b></a>
+        <a class="brand-guide-row" href="#ai-visualizer"><span>02</span><div><strong>Describe the direction</strong><small>Choose the style, finish, and window layout you want to explore.</small></div><b>↓</b></a>
+        <a class="brand-guide-row" href="#ai-visualizer"><span>03</span><div><strong>See it, then make it real</strong><small>AI creates the concept. LIFTX finds the closest real product paths.</small></div><b>→</b></a>
       </aside>
     </div>
   </div>
@@ -121,6 +122,77 @@
       <a class="dealer-bridge-card" href="/amarr-garage-doors-boise"><small>LIFTX Dealer Brand</small><span class="dealer-bridge-logo"><img src="assets/brands/amarr-logo.svg" alt="Amarr"></span><span>Explore →</span></a>
       <a class="dealer-bridge-card" href="/clopay-garage-doors-boise"><small>LIFTX Dealer Brand</small><span class="dealer-bridge-logo"><img src="assets/brands/Clopay-GoldBar_RGB.png" alt="Clopay"></span><span>Explore →</span></a>
       <a class="dealer-bridge-card" href="/wayne-dalton-garage-doors-boise"><small>LIFTX Dealer Brand</small><span class="dealer-bridge-logo">Wayne Dalton</span><span>Explore →</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="ai-visualizer-section" id="ai-visualizer" aria-labelledby="ai-visualizer-heading">
+  <div class="content-shell ai-visualizer-shell">
+    <div class="ai-visualizer-intro">
+      <div>
+        <p class="eyebrow">LIFTX AI Visualizer</p>
+        <h2 id="ai-visualizer-heading">See the idea on your actual home.</h2>
+        <p>Upload a photo, tell AI what you want the opening to look like, and get a realistic conceptual mockup. Then we’ll point you toward the closest real collections from LIFTX dealer brands.</p>
+      </div>
+      <div class="ai-visualizer-steps" aria-label="Visualizer steps">
+        <div class="ai-visualizer-step"><span>01</span><div><strong>Upload a clear photo</strong><p>Keep the full opening and some of the surrounding home visible.</p></div></div>
+        <div class="ai-visualizer-step"><span>02</span><div><strong>Choose a direction</strong><p>Pick the look, color, glass, and anything else that matters.</p></div></div>
+        <div class="ai-visualizer-step"><span>03</span><div><strong>Review real product paths</strong><p>These are close matches—not claims that the AI door is an exact model.</p></div></div>
+      </div>
+    </div>
+
+    <div class="ai-visualizer-card">
+      <h3>Build your “what if?” version.</h3>
+      <p class="visualizer-lede">The home stays recognizable. The garage door and opening are the part AI changes.</p>
+      <form class="visualizer-form" id="visualizer-form" enctype="multipart/form-data">
+        <label class="visualizer-upload" id="visualizer-upload" for="visualizer-photo">
+          <input id="visualizer-photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif" required>
+          <img class="visualizer-preview" id="visualizer-preview" alt="Selected home or garage photo preview">
+          <span class="visualizer-upload-copy"><span class="visualizer-upload-icon" aria-hidden="true">+</span><strong>Choose a home or garage photo</strong><small>JPEG, PNG, WebP, HEIC, or HEIF · up to 15 MB</small></span>
+        </label>
+
+        <fieldset class="visualizer-fieldset">
+          <legend>What should AI change?</legend>
+          <div class="visualizer-choice-grid">
+            <div class="visualizer-choice"><input id="opening-door" type="radio" name="opening" value="garage-door" checked><label for="opening-door">Garage door only</label></div>
+            <div class="visualizer-choice"><input id="opening-full" type="radio" name="opening" value="garage-opening"><label for="opening-full">Door and opening details</label></div>
+          </div>
+        </fieldset>
+
+        <fieldset class="visualizer-fieldset">
+          <legend>Overall direction</legend>
+          <div class="visualizer-choice-grid">
+            <div class="visualizer-choice"><input id="style-modern" type="radio" name="style" value="modern" checked><label for="style-modern">Modern / clean</label></div>
+            <div class="visualizer-choice"><input id="style-traditional" type="radio" name="style" value="traditional"><label for="style-traditional">Traditional</label></div>
+            <div class="visualizer-choice"><input id="style-carriage" type="radio" name="style" value="carriage"><label for="style-carriage">Carriage house</label></div>
+            <div class="visualizer-choice"><input id="style-full-view" type="radio" name="style" value="full-view"><label for="style-full-view">Full-View glass</label></div>
+          </div>
+        </fieldset>
+
+        <div class="visualizer-field"><label for="visualizer-color">Color or finish</label><select id="visualizer-color" name="color"><option value="black">Black</option><option value="white">White</option><option value="dark-bronze">Dark bronze</option><option value="wood-look">Wood-look</option><option value="gray">Gray</option><option value="match-home">Match the home</option></select></div>
+        <div class="visualizer-field"><label for="visualizer-windows">Window layout</label><select id="visualizer-windows" name="windows"><option value="none">No glass</option><option value="top-row">Top-row windows</option><option value="side-left">Slim vertical windows — left side of door</option><option value="side-right">Slim vertical windows — right side of door</option><option value="side-both">Slim vertical windows — both sides of door</option><option value="every-section">Windows in every door section</option><option value="full-view">True Full-View glass door</option></select></div>
+        <div class="visualizer-field"><label for="visualizer-notes">Anything else AI should know?</label><textarea id="visualizer-notes" name="notes" maxlength="600" placeholder="Example: Flush horizontal panels, warm walnut finish, dark privacy glass, and no decorative hardware."></textarea></div>
+        <div id="visualizer-turnstile" aria-hidden="true"></div>
+        <button class="btn btn-primary visualizer-submit" id="visualizer-submit" type="submit">Generate My Concept</button>
+        <p class="visualizer-status" id="visualizer-status" role="status" aria-live="polite">Checking visualizer availability…</p>
+        <p class="visualizer-privacy">Your photo is sent securely for this generation request. LIFTX does not place the OpenAI API key in the browser.</p>
+      </form>
+
+      <section class="visualizer-result" id="visualizer-result" aria-labelledby="visualizer-result-heading">
+        <p class="eyebrow">Concept Ready</p>
+        <h3 id="visualizer-result-heading" tabindex="-1">Your AI garage-door concept</h3>
+        <div class="visualizer-concept-wrap"><img id="visualizer-concept-image" alt=""><span class="visualizer-concept-badge">AI Concept · Not an exact product</span></div>
+        <p class="visualizer-summary" id="visualizer-summary"></p>
+        <p class="visualizer-disclaimer">This is the “what if?” version. AI can make your garage look pretty convincing, but it can also get a little creative. We’ll make sure the real door, color, glass, and fit actually exist before you spend any money.</p>
+        <div class="visualizer-actions"><a class="btn btn-primary" id="visualizer-download" href="#">Download Concept</a><button class="btn btn-outline" id="visualizer-share" type="button">Share Concept</button><button class="btn btn-outline" id="visualizer-try-again" type="button">Try Another Direction</button></div>
+        <div class="visualizer-matches">
+          <h4>Closest real product paths</h4>
+          <p>These are manufacturer collections with overlapping style cues—not a claim that the generated door is an exact product or available configuration.</p>
+          <div class="visualizer-match-list" id="visualizer-match-list"></div>
+          <p class="visualizer-human-help" id="visualizer-human-help" hidden></p>
+        </div>
+        <div class="visualizer-lead"><h4>Want to make it real?</h4><p>Download the concept, then send it to LIFTX. We’ll verify the closest door, construction, color, glass, sizing, track, and fit.</p><div class="visualizer-lead-actions"><a class="btn btn-primary" id="visualizer-contact" href="/contact?source=ai-visualizer#contact-form-card">Request Product Help</a><a class="btn btn-outline" id="visualizer-text" href="sms:+12089954321">Text the Concept</a></div></div>
+      </section>
     </div>
   </div>
 </section>
@@ -206,4 +278,4 @@
   </div>
   <div class="content-shell footer-bottom"><span>Idaho GC License #1971051</span></div>
 </footer>
-<script src="site.js"></script></body></html>
+<script src="site.js"></script><script src="visualizer.js"></script></body></html>

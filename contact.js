@@ -2,6 +2,23 @@ const form=document.getElementById('contact-form');
 const submitButton=document.getElementById('form-submit');
 const statusBox=document.getElementById('form-status');
 
+const visualizerParams=new URLSearchParams(window.location.search);
+if(visualizerParams.get('source')==='ai-visualizer'&&form){
+  const allowed=new Set(['opening','style','color','windows','match1','match2','match3']);
+  const lines=['I created an AI garage-door concept on the LIFTX website and want help finding the closest real product.'];
+  for(const [key,value] of visualizerParams){
+    if(allowed.has(key)&&value&&value.length<=100) lines.push(`${key.replace(/^match(\d)$/,'Closest match $1').replace(/^./,letter=>letter.toUpperCase())}: ${value}`);
+  }
+  const messageField=document.getElementById('message');
+  const serviceField=document.getElementById('service');
+  const sourceField=document.getElementById('contact-source');
+  const note=document.getElementById('visualizer-contact-note');
+  if(messageField) messageField.value=lines.join('\n');
+  if(serviceField) serviceField.value='New Door / Replacement';
+  if(sourceField) sourceField.value='ai-visualizer';
+  if(note) note.hidden=false;
+}
+
 function showFormStatus(message,type){
   if(!statusBox) return;
   statusBox.textContent=message;

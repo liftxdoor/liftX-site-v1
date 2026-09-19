@@ -24,6 +24,14 @@ jobs:
       - name: Record deployed GitHub commit
         run: git log -1 --format=%H
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run visualizer tests
+        run: npm test
+
       - name: Deploy to existing Cloudflare production Worker
         run: npx --yes wrangler@4.128.0 deploy --name liftx-site-v1
         env:
