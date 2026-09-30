@@ -186,6 +186,7 @@
       </div>
       <form id="contact-form" action="https://formspree.io/f/mgogpvwg" method="POST">
         <input type="hidden" name="subject" value="New LIFTX Website Inquiry — {{ service }} — {{ name }}">
+        <input id="contact-source" type="hidden" name="source" value="website">
         <div class="form-honeypot" aria-hidden="true">
           <label for="company-website">Leave this field empty</label>
           <input id="company-website" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
@@ -198,6 +199,7 @@
           <div class="field"><label for="city">City</label><input id="city" type="text" name="city" autocomplete="address-level2"></div>
           <div class="field"><label for="customer-type">Customer type</label><select id="customer-type" name="customer_type"><option>Homeowner</option><option>Business / Commercial</option><option>Builder / Contractor</option><option>Property Manager</option></select></div>
           <div class="field"><label for="service">Service needed</label><select id="service" name="service"><option>Repair</option><option>New Door / Replacement</option><option>Full-View Door</option><option>Commercial Door</option><option>Builder / New Construction</option><option>Operator / Opener</option><option>Maintenance</option><option>Other</option></select></div>
+          <div class="field full" id="visualizer-contact-note" hidden><p style="margin:0;padding:13px 14px;border-left:3px solid var(--blue);background:#f2f7fc;color:#3d4852;font-size:.84rem;line-height:1.55">Your visualizer direction is filled in below. Download or share the generated concept first, then attach it when you text LIFTX.</p></div>
           <div class="field full"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
           <div class="field full"><div id="form-status" class="form-status" role="status" aria-live="polite"></div></div>
           <div class="field full"><button id="form-submit" class="btn btn-primary form-submit" type="submit">Send Request</button></div>
