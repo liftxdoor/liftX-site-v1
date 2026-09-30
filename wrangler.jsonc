@@ -5,6 +5,9 @@
   "limits": {
     "cpu_ms": 30000
   },
+  "vars": {
+    "VISUALIZER_ENABLED": "true"
+  },
   "assets": {
     "directory": ".",
     "binding": "ASSETS",

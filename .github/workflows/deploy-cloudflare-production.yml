@@ -33,7 +33,7 @@ jobs:
         run: npm test
 
       - name: Deploy to existing Cloudflare production Worker
-        run: npx --yes wrangler@4.128.0 deploy --name liftx-site-v1
+        run: npx --yes wrangler@4.128.0 deploy --name liftx-site-v1 --keep-vars
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
