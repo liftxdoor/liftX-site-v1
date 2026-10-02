@@ -4,6 +4,10 @@
 
   const summary = document.getElementById('google-review-summary');
   const viewAllLinks = document.querySelectorAll('[data-google-reviews-link]');
+  const compactReviewLinks = document.querySelectorAll('.hero-google-proof, .quick-card a[href*="maps.app.goo.gl"]');
+  const reviewLinks = new Set([...viewAllLinks, ...compactReviewLinks]);
+  const compactRating = document.querySelector('.google-proof-rating strong');
+  const compactCount = document.querySelector('.google-proof-rating > span:last-child');
   const fallbackUrl = 'https://maps.app.goo.gl/9c6jKwTTh9rvFSHY9';
 
   const safeGoogleUrl = (url, fallback = fallbackUrl) => {
@@ -18,9 +22,20 @@
 
   const setReviewLinks = (url) => {
     const safeUrl = safeGoogleUrl(url);
-    viewAllLinks.forEach((link) => {
+    reviewLinks.forEach((link) => {
       link.href = safeUrl;
     });
+  };
+
+  const updateCompactProof = (data) => {
+    const rating = Number(data?.rating);
+    const count = Number(data?.userRatingCount);
+    if (compactRating && Number.isFinite(rating) && rating > 0) {
+      compactRating.textContent = rating.toFixed(1);
+    }
+    if (compactCount && Number.isInteger(count) && count > 0) {
+      compactCount.textContent = `${count.toLocaleString()} ${count === 1 ? 'review' : 'reviews'}`;
+    }
   };
 
   const stars = (rating) => {
@@ -36,7 +51,7 @@
     return attribution;
   };
 
-  const renderUnavailable = () => {
+  const renderUnavailable = (url = fallbackUrl) => {
     root.replaceChildren();
     const message = document.createElement('div');
     message.className = 'review-unavailable';
@@ -44,24 +59,19 @@
     const text = document.createElement('p');
     text.textContent = 'Google reviews are temporarily unavailable here.';
     const link = document.createElement('a');
-    link.href = fallbackUrl;
+    link.href = safeGoogleUrl(url);
     link.target = '_blank';
     link.rel = 'noopener';
     link.textContent = 'Read LIFTX reviews on Google →';
     content.append(text, link);
     message.append(content);
     root.append(message);
-    setReviewLinks(fallbackUrl);
+    setReviewLinks(url);
   };
 
   const renderCarousel = (data) => {
-    const reviews = Array.isArray(data.reviews) ? data.reviews.filter((review) => review && review.text) : [];
-    if (!reviews.length) {
-      renderUnavailable();
-      return;
-    }
-
     setReviewLinks(data.googleMapsUri);
+    updateCompactProof(data);
 
     if (summary) {
       summary.hidden = false;
@@ -75,6 +85,12 @@
       const count = Number(data.userRatingCount || 0).toLocaleString();
       summaryText.textContent = `${rating}${count !== '0' ? ` · ${count} reviews` : ''}`;
       summary.append(starLine, summaryText, makeGoogleAttribution());
+    }
+
+    const reviews = Array.isArray(data.reviews) ? data.reviews.filter((review) => review && review.text) : [];
+    if (!reviews.length) {
+      renderUnavailable(data.googleMapsUri);
+      return;
     }
 
     root.replaceChildren();
@@ -222,11 +238,14 @@
   };
 
   setReviewLinks(fallbackUrl);
-  fetch('/api/google-reviews', { headers: { Accept: 'application/json' } })
+  fetch('/api/google-reviews', {
+    headers: { Accept: 'application/json' },
+    cache: 'no-store',
+  })
     .then((response) => {
       if (!response.ok) throw new Error('Reviews unavailable');
       return response.json();
     })
     .then(renderCarousel)
-    .catch(renderUnavailable);
+    .catch(() => renderUnavailable());
 })();
