@@ -9,6 +9,8 @@
   const compactRating = document.querySelector('.google-proof-rating strong');
   const compactCount = document.querySelector('.google-proof-rating > span:last-child');
   const fallbackUrl = 'https://maps.app.goo.gl/9c6jKwTTh9rvFSHY9';
+  const fallbackRating = 5;
+  const fallbackReviewCount = 33;
 
   const safeGoogleUrl = (url, fallback = fallbackUrl) => {
     if (typeof url !== 'string') return fallback;
@@ -52,6 +54,7 @@
   };
 
   const renderUnavailable = (url = fallbackUrl) => {
+    updateCompactProof({ rating: fallbackRating, userRatingCount: fallbackReviewCount });
     root.replaceChildren();
     const message = document.createElement('div');
     message.className = 'review-unavailable';
@@ -238,6 +241,7 @@
   };
 
   setReviewLinks(fallbackUrl);
+  updateCompactProof({ rating: fallbackRating, userRatingCount: fallbackReviewCount });
   fetch('/api/google-reviews', {
     headers: { Accept: 'application/json' },
     cache: 'no-store',
