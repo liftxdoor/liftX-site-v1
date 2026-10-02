@@ -1,6 +1,6 @@
 {
   "name": "liftx-site-v1",
-  "main": "worker/index.js",
+  "main": "worker/main.js",
   "compatibility_date": "2026-07-15",
   "limits": {
     "cpu_ms": 30000
@@ -12,7 +12,8 @@
     "directory": ".",
     "binding": "ASSETS",
     "run_worker_first": [
-      "/api/visualizer/*"
+      "/api/visualizer/*",
+      "/api/google-reviews"
     ]
   },
   "ratelimits": [
