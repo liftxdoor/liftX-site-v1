@@ -10,6 +10,7 @@ const slug='/high-lift-garage-door-conversion-boise';
   const report=[];
   for(const [name,width,height] of [['small-phone',320,740],['phone',390,844],['tablet',768,1024],['desktop',1440,1000]]){
     const page=await browser.newPage({viewport:{width,height},deviceScaleFactor:1});
+    await page.emulateMedia({reducedMotion:'reduce'});
     const errors=[];
     page.on('pageerror',e=>errors.push(e.message));
     const response=await page.goto(base+slug,{waitUntil:'networkidle'});
@@ -34,6 +35,7 @@ const slug='/high-lift-garage-door-conversion-boise';
     await page.locator('main img').last().evaluate(img=>img.decode());
     assert(await page.locator('main img').evaluateAll(imgs=>imgs.every(i=>i.naturalWidth>0)));
     await page.evaluate(()=>scrollTo(0,0));
+    await page.waitForFunction(()=>scrollY===0);
     await page.screenshot({path:`qa/${name}-full.png`,fullPage:true});
     await page.screenshot({path:`qa/${name}-hero.png`});
     await page.locator('.faq-list summary').first().click();
