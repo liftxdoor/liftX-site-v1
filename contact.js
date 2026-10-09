@@ -3,6 +3,16 @@ const submitButton=document.getElementById('form-submit');
 const statusBox=document.getElementById('form-status');
 
 const visualizerParams=new URLSearchParams(window.location.search);
+if(visualizerParams.get('source')==='high-lift'&&form){
+  const serviceField=document.getElementById('service');
+  const sourceField=document.getElementById('contact-source');
+  const messageField=document.getElementById('message');
+  if(serviceField) serviceField.value='High-Lift Conversion';
+  if(sourceField) sourceField.value='high-lift';
+  if(messageField&&!messageField.value){
+    messageField.value='I would like an assessment for a high-lift garage door conversion.\n\nWhat I want to make room for: \nAvailable door, ceiling, or equipment measurements: ';
+  }
+}
 if(visualizerParams.get('source')==='ai-visualizer'&&form){
   const allowed=new Set(['opening','style','color','windows','match1','match2','match3']);
   const lines=['I created an AI garage-door concept on the LIFTX website and want help finding the closest real product.'];

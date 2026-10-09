@@ -1,0 +1,58 @@
+/* Scoped service-page layout; shared V1 header, footer and components stay intact. */
+.high-lift-page .eyebrow{color:var(--blue)}
+.high-lift-page h1{font-size:clamp(2.35rem,4.2vw,3.6rem);line-height:1.04}
+.high-lift-page h2{font-size:clamp(1.95rem,3vw,2.75rem);line-height:1.08}
+.high-lift-page .page-hero,.high-lift-page .final-cta{background:var(--black)}
+.high-lift-page .page-hero .eyebrow,.high-lift-page .final-cta .eyebrow{color:var(--white)}
+.high-lift-page .page-hero-inner{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;padding-block:80px;min-height:0}
+.high-lift-page .page-hero-copy{padding:0;max-width:none}
+.high-lift-page .page-hero-copy>p:not(.eyebrow){color:var(--line);font-size:1rem}
+.high-lift-page .page-actions{display:flex;gap:16px;margin-top:24px}
+.high-lift-page .btn-outline{display:inline-flex;background:var(--white);border-color:var(--blue);color:var(--blue)}
+.high-lift-page .btn{min-height:52px;text-align:center}
+.high-lift-page .btn:hover{opacity:.9}
+.high-lift-page a:focus-visible,.high-lift-page summary:focus-visible{outline:3px solid var(--blue);outline-offset:5px}
+.high-lift-page .hero-photo{margin:0;min-width:0}
+.high-lift-page .hero-photo img{width:100%;aspect-ratio:1;object-fit:cover;object-position:center 35%;border-radius:16px}
+.high-lift-page figcaption{margin-top:16px;color:var(--gray);font-size:.86rem;line-height:1.6}
+.high-lift-page .hero-photo figcaption{color:var(--line)}
+.high-lift-page .hero-photo a{display:block;border-radius:16px}
+.high-lift-page .breadcrumb{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 24px;font-size:.85rem;color:var(--line)}
+.high-lift-page .breadcrumb a{text-decoration:underline;text-underline-offset:4px}
+.high-lift-page .project-detail{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:48px}
+.high-lift-page .project-detail figure{margin:0;width:100%;max-width:380px;justify-self:end}
+.high-lift-page .project-detail img{width:100%;height:auto;border-radius:16px}
+.high-lift-page .project-detail p{color:var(--gray)}
+.high-lift-page .note{margin-top:24px;padding:24px}
+.high-lift-page .cards{gap:24px;margin-top:32px}
+.high-lift-page .card{min-height:0;padding:32px}
+.high-lift-page .two-up{grid-template-columns:repeat(2,minmax(0,1fr))}
+.high-lift-page .fit-list{margin:0;padding-left:20px;color:var(--gray);line-height:1.7}
+.high-lift-page .fit-list li+li{margin-top:12px}
+.high-lift-page .steps{list-style:none;padding:0;gap:24px;margin-top:32px}
+.high-lift-page .step{padding:24px}
+.high-lift-page .step p{font-size:.95rem;line-height:1.65}
+.high-lift-page .verification-list{margin-top:32px}
+.high-lift-page .verification-list .detail-item{padding:24px}
+.high-lift-page .quick-links a{min-height:44px;display:inline-flex;align-items:center}
+.high-lift-page .final-cta-inner{align-items:center}
+.high-lift-page .final-cta .page-actions{flex-shrink:0;display:grid;margin-top:0}
+.high-lift-page .final-cta p:not(.eyebrow){color:var(--line)}
+.high-lift-page .final-cta .btn{white-space:normal}
+@media(max-width:960px){
+  .high-lift-page .page-hero-inner{gap:32px}
+  .high-lift-page .cards{grid-template-columns:1fr}
+  .high-lift-page .project-detail{gap:32px}
+}
+@media(max-width:760px){
+  .high-lift-page .page-hero-inner{grid-template-columns:1fr;padding-block:48px 64px;gap:32px}
+  .high-lift-page .hero-photo img{aspect-ratio:4/3;object-position:center 40%}
+  .high-lift-page .breadcrumb{font-size:.8rem;gap:8px 12px}
+  .high-lift-page .page-actions .btn{width:100%}
+  .high-lift-page .section,.high-lift-page .final-cta{padding-block:64px}
+  .high-lift-page .project-detail{grid-template-columns:1fr}
+  .high-lift-page .project-detail figure{max-width:360px;justify-self:center}
+  .high-lift-page .card{padding:24px}
+  .high-lift-page .final-cta .page-actions{margin-top:24px}
+  .high-lift-page .final-cta .btn{margin-top:0}
+}
