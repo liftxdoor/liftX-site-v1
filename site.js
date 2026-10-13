@@ -157,7 +157,14 @@ if(toggle&&menu){
   setMenu(false);
   toggle.addEventListener('click',()=>setMenu(!menu.classList.contains('open')));
 
-  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenu(false)));
+  /*
+   * Let the browser finish the anchor's native click before making its menu
+   * ancestor inert. WebKit can otherwise lose or misroute the default
+   * navigation when the tapped link becomes inert during the same event.
+   */
+  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+    window.setTimeout(()=>setMenu(false),0);
+  }));
 
   document.addEventListener('keydown',event=>{
     if(event.key==='Escape'&&menu.classList.contains('open')){

@@ -88,7 +88,10 @@ if(toggle&&menu){
     if(returnFocus) toggle.focus();
   };
   toggle.addEventListener('click',()=>setMenu(!menu.classList.contains('open')));
-  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>setMenu(false)));
+  /* Defer inert teardown until WebKit completes the anchor's native click. */
+  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+    window.setTimeout(()=>setMenu(false),0);
+  }));
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&menu.classList.contains('open')) setMenu(false,{returnFocus:true});});
   window.matchMedia('(min-width: 961px)').addEventListener('change',event=>{if(event.matches) setMenu(false);});
 }</script>
