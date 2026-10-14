@@ -4,6 +4,17 @@ import test from 'node:test';
 
 const scriptUrl = new URL('../google-reviews.js', import.meta.url);
 
+test('homepage static review count matches the client fallback', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const source = await readFile(scriptUrl, 'utf8');
+  const staticCount = html.match(/class="google-proof-rating"[\s\S]*?<strong>[^<]+<\/strong><span>(\d+) reviews<\/span>/);
+  const fallbackCount = source.match(/const fallbackReviewCount = (\d+);/);
+
+  assert.ok(staticCount, 'homepage review count is present');
+  assert.ok(fallbackCount, 'client fallback review count is present');
+  assert.equal(staticCount[1], fallbackCount[1]);
+});
+
 test('homepage loads the live review client exactly once after its required markup', async () => {
   const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
   const scripts = html.match(/<script\b[^>]*\bsrc=["']\/google-reviews\.js["'][^>]*>/g) || [];
