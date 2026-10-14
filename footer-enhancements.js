@@ -7,6 +7,19 @@
   }
 
   const footerBrand = document.querySelector('.footer-brand');
+  if (footerBrand && !footerBrand.querySelector('.footer-identity')) {
+    const identity = document.createElement('p');
+    identity.className = 'footer-identity';
+    identity.innerHTML = `
+      <strong>LIFTX Door Systems</strong>
+      <span aria-hidden="true">·</span>
+      <a href="https://www.instagram.com/liftxdoor/" target="_blank" rel="noopener">@liftxdoor</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://www.liftxdoor.com/">liftxdoor.com</a>`;
+    const footerDescription = footerBrand.querySelector('p');
+    footerDescription ? footerDescription.insertAdjacentElement('afterend', identity) : footerBrand.append(identity);
+  }
+
   if (footerBrand && !footerBrand.querySelector('.footer-contact')) {
     const contact = document.createElement('div');
     contact.className = 'footer-contact';
